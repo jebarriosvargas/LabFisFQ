@@ -81,6 +81,10 @@ dρdM = 4/D/D/h/π
 dρdD = -8*M/D/D/D/h/π
 dρdh = -4*M/D/D/h/h/π
 
+
+print(dρdM)
+print(dρdD)
+print(dρdh)
 ρ = 4*M/D/D/h/π
 uρ_C = sqrt( (dρdM*uM_C)**2 + (dρdD*uD_C)**2 + (dρdh*uh_C)**2   )
 print("ρ =",ρ)
