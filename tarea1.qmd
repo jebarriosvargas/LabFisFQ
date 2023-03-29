@@ -1,0 +1,327 @@
+# Tarea 1 - La medición y su incertidumbre
+
+## Mediciones directas e indirectas
+
+¿Cuál es la diferencia entre una medida directa y una medida indirecta?
+
+## Incertidumbre Tipo A y Tipo B
+
+¿Cuál es la diferencia entre incertidumbre tipo A e incertidumbre tipo B?
+
+
+
+## Ejercicio densidad
+Se midió una vez el diámetro, el espesor y la masa de una moneda para determinar su densidad volumétrica de masa. Las medidas obtenidas para cada mensurando y el instrumento utilizado, con su resolución y unidades, se muestran a continuación:
+
+
+
+|**Mensurando**|**Instrumento**|**Medida**|**Incertidumbre del instrumento**|
+|-|-|-|-|
+|Diámetro | Calibrador vernier | $26.25$ | $\pm 0.05\,{\rm mm}$|
+|Espesor | Tornillo micrométrico | $2.448$ | $\pm 0.001\,{\rm mm}$|
+|Masa | Balanza granataria con escala vernier | $62.09$ | $\pm 0.01\,{\rm g}$|
+
+¿Cuál es la densidad de la moneda en ${\rm g/mm}^3$?
+
+**Respuesta**
+
+Comenzamos recordando que la densidad se determina por la siguiente expresión,
+$$
+\rho = \frac{M}{V}\,,
+$$
+donde $M$ es la masa y $V$ es el volúmen. De acuerdo con las unidades que nos requiere el ejercicio, el valor de la masa debe de estar en gramos y el valor del volumen en milímetros al cubo.
+
+La moneda se puede aproximar geométricamente a un cilíndro por lo que el volumen puede medirse de forma indirecta como:
+$$
+V = \frac{\pi D^2 h}{4}
+$$
+donde $D$ es el diámetro y $h$ es el espesor. Por tanto la densidad puede obtenerse de la expresión:
+$$
+\rho = \frac{4M}{\pi D^2 h}
+$$
+
+
+La incertidumbre asociada a la densidad está dada por:
+$$
+u_C(\rho) = \sqrt{  \bigg(\frac{\partial \rho}{\partial M}\bigg|_{\bar{M},\bar{D},\bar{h}} u_C(M)\bigg)^2 + \bigg(\frac{\partial \rho}{\partial D}\bigg|_{\bar{M},\bar{D},\bar{h}} u_C(D)\bigg)^2 + \bigg(\frac{\partial \rho}{\partial h}\bigg|_{\bar{M},\bar{D},\bar{h}} u_C(h)\bigg)^2 }
+$$
+Las derivadas parciales (o coeficientes de sensibilidad) que se encuentran en la expresión son
+
+$$
+\frac{\partial \rho}{\partial M} = \frac{4}{\pi D^2 h}
+$$
+
+
+$$
+\frac{\partial \rho}{\partial D} = -\frac{8M}{\pi D^3 h}
+$$
+
+$$
+\frac{\partial \rho}{\partial h} = -\frac{4M}{\pi D^2 h^2}
+$$
+
+
+```{python}
+from pylab import *
+
+π =pi
+D    = 26.25
+uD_B = 0.05
+uD_C = uD_B
+
+h    = 2.448
+uh_B = 0.001
+uh_C = uh_B
+
+M    = 62.09 
+uM_B = 0.01
+uM_C = uM_B
+
+dρdM = 4/D/D/h/π
+dρdD = -8*M/D/D/D/h/π
+dρdh = -4*M/D/D/h/h/π
+
+ρ = 4*M/D/D/h/π
+uρ_C = sqrt( (dρdM*uM_C)**2 + (dρdD*uD_C)**2 + (dρdh*uh_C)**2   )
+print("ρ =",ρ)
+print("u(ρ) = ",uρ_C)
+```
+
+```{python}
+print('ρ    = {0:.4f} [g/mm³]'.format(ρ))
+print('u(ρ) = {0:.4f} [g/mm³]'.format(uρ_C))
+```
+
+
+
+
+
+## Ejercicio
+
+| | | | | | | | | | |
+|-|-|-|-|-|-|-|-|-|-|
+|0.06|1.04|1.21|1.88|2.06|2.10|2.14|2.27|2.47|2.60|
+|2.70|2.89|3.07|3.09|3.30|3.31|3.50|3.71|3.78|3.86|
+|3.93|4.06|4.15|4.19|4.22|4.38|4.40|4.45|4.55|4.57|
+|4.66|4.77|4.86|4.86|4.87|4.91|4.98|5.05|5.08|5.08|
+|5.13|5.19|5.19|5.22|5.37|5.40|5.43|5.49|5.55|5.57|
+|5.59|5.59|5.66|5.68|5.69|5.71|5.72|5.75|5.90|5.91|
+|5.91|6.03|6.13|6.21|6.29|6.29|6.42|6.44|6.50|6.57|
+|6.60|6.68|6.72|6.78|6.83|6.84|6.85|6.86|7.03|7.11|
+|7.26|7.31|7.61|7.63|7.64|7.67|7.72|7.78|7.83|7.85|
+|7.86|7.88|7.89|7.97|7.99|8.04|8.10|8.19|8.23|8.23|
+|8.28|8.39|8.39|8.51|8.57|8.57|8.62|8.62|8.66|8.66|
+|8.69|8.76|9.10|9.19|9.24|9.28|9.35|9.50|9.60|9.69|
+|9.76|9.76|9.86|10.11|10.12|10.58|10.65|10.83|11.13|11.21|
+|11.30|11.43|11.48|11.99|12.01|12.44|13.59| | ||
+
+```{python}
+from pylab import *
+from scipy import stats
+```
+
+```{python}
+Data = array( [ 0.06 , 2.7  , 3.93 , 4.66 , 5.13 , 5.59 , 5.91 , 6.6  , 7.26 , 7.86 , 8.28 , 8.69,
+  9.76 ,11.3  , 1.04 , 2.89 , 4.06 , 4.77 , 5.19 , 5.59 , 6.03 , 6.68 , 7.31 , 7.88,
+  8.39 , 8.76 , 9.76 ,11.43 , 1.21 , 3.07 , 4.15 , 4.86 , 5.19 , 5.66 , 6.13 , 6.72,
+  7.61 , 7.89 , 8.39 , 9.1  , 9.86 ,11.48 , 1.88 , 3.09 , 4.19 , 4.86 , 5.22 , 5.68,
+  6.21 , 6.78 , 7.63 , 7.97 , 8.51 , 9.19 ,10.11 ,11.99 , 2.06 , 3.3  , 4.22 , 4.87,
+  5.37 , 5.69 , 6.29 , 6.83 , 7.64 , 7.99 , 8.57 , 9.24 ,10.12 ,12.01 , 2.1  , 3.31,
+  4.38 , 4.91 , 5.4  , 5.71 , 6.29 , 6.84 , 7.67 , 8.04 , 8.57 , 9.28 ,10.58 ,12.44,
+  2.14 , 3.5  , 4.4  , 4.98 , 5.43 , 5.72 , 6.42 , 6.85 , 7.72 , 8.1  , 8.62 , 9.35,
+ 10.65 ,13.59 , 2.27 , 3.71 , 4.45 , 5.05 , 5.49 , 5.75 , 6.44 , 6.86 , 7.78 , 8.19,
+  8.62 , 9.5  ,10.83 , 2.47 , 3.78 , 4.55 , 5.08 , 5.55 , 5.9  , 6.5  , 7.03 , 7.83,
+  8.23 , 8.66 , 9.6  ,11.13 , 2.6  , 3.86 , 4.57 , 5.08 , 5.57 , 5.91 , 6.57 , 7.11,
+  7.85 , 8.23 , 8.66 , 9.69 ,11.21] )
+```
+
+
+```{python}
+mean = Data.mean()
+print ("media aritmética : {0:.3} mg".format(mean))
+
+print ("mínimo valor de v: {0:.3} mg".format(min(Data)))
+print ("máximo valor de v: {0:.3} mg".format(max(Data)))
+# print (bins)
+
+print ("valor ejemplo : {0:.3}".format(Data[3]))
+
+print( sort(Data) )
+print ("Moda utilizando stats.mode() :",stats.mode(Data))
+moda    = stats.mode(Data)[0][0]
+mediana = 0.5* ( sort(Data)[int(len(Data)/2)]+sort(Data)[int(len(Data+1)/2)] )
+print ("Moda                         : {0} mg".format(moda))
+print ("Mediana                      : {0} mg".format(mediana))
+
+
+print (len(Data))
+
+
+# Desviación estándar
+s = np.sqrt( np.sum( (Data-mean)*(Data-mean) )/(len(Data)-1)  )
+print ("Desviación estándar muestral: {0:.3f} mg".format(s))
+uA = s/np.sqrt(len(Data))
+print ("Incertidumbre tipo A  (u_A) : {0:.3f} mg".format(uA))
+
+k = int( np.rint( 1 + np.log2(len(Data)) ) ) +1
+print ("Regla de Sturges : {0}".format( k ))
+bins = np.linspace(min(Data),max(Data),num=k+1,endpoint=True )
+
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(8,8))
+
+n, bins, patches = axes.hist(Data, bins, density=False, facecolor='#2D3862', alpha=0.75,rwidth=0.9)
+
+# ticks en el eje x
+axes.set_xticks(bins)
+labels = [ r"${0:.3}$".format(x) for x in bins ]
+axes.set_xticklabels( labels )
+
+# Etiquetas
+axes.set_title(r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$")
+axes.set_xlabel(r"${\rm Masas}\,{({\rm mg})}$")
+axes.set_ylabel(r"${\rm Frecuencias}$")
+
+axes.plot( [mean,mean],[0,40],ls='--',c="red",    label=r"$\bar{m}=\,$"   +r"${0:.3f}\,\pm{1:.3f}\,$".format(mean,uA)+r"${\rm mg}$" )
+axes.plot( [moda,moda],[0,40],ls='--',c="#28DDA2",label=r"${\rm moda}=\,$"+r"${0:.2f}\,$".format(moda)+r"$\,{\rm mg}$" )
+axes.plot( [mediana,mediana],[0,40],ls='--',c="#5E99CF",label=r"${\rm mediana}=\,$"+r"${0:.2f}\,$".format(mediana)+r"$\,{\rm mg}$" )
+
+axes.set_ylim(0,40)
+# axes.set_xlim(3.4,4.4)
+
+axes.legend(loc=0,frameon=True,framealpha=1.0)
+axes.grid()
+
+fig.tight_layout()
+```
+
+```{python}
+
+import seaborn as sns
+
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(8,8))
+
+
+
+x    = np.linspace( min(Data),max(Data),1001 )
+Dist = (1/ sqrt(2*np.pi*s*s))*exp(-(x-mean)*(x-mean)/2.0/s/s)
+
+axes.plot( x,Dist,label=r"${\rm Gaussiana}$" )
+
+
+ymax = 0.16
+
+n, bins, patches = axes.hist(Data, bins, density=True, facecolor='#2D3862', alpha=0.75,rwidth=1.0)
+
+# ticks en el eje x
+axes.set_xticks(bins)
+labels = [ r"${0:.3}$".format(x) for x in bins ]
+axes.set_xticklabels( labels )
+
+# Etiquetas
+axes.set_title(r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$")
+axes.set_xlabel(r"${\rm Masas}\,{({\rm mg})}$")
+axes.set_ylabel(r"${\rm Frecuencias}$")
+
+axes.plot( [mean,mean],[0,ymax],ls='--',c="red",    label=r"$\bar{m}=\,$"   +r"${0:.3f}\,\pm{1:.3f}\,$".format(mean,uA)+r"${\rm mg}$" )
+axes.plot( [moda,moda],[0,ymax],ls='--',c="#28DDA2",label=r"${\rm moda}=\,$"+r"${0:.2f}\,$".format(moda)+r"$\,{\rm mg}$" )
+axes.plot( [mediana,mediana],[0,ymax],ls='--',c="#5E99CF",label=r"${\rm mediana}=\,$"+r"${0:.2f}\,$".format(mediana)+r"$\,{\rm mg}$" )
+
+
+axes.set_ylim(0,ymax)
+# axes.set_xlim(3.4,4.4)
+
+axes.legend(loc=1,frameon=True,framealpha=1.0)
+axes.grid()
+
+# fig.savefig("Histograma.pdf")
+
+fig.tight_layout()
+
+```
+
+
+```{python}
+mpl.rcParams.update({'font.size': 14, 'text.usetex': True})
+mpl.rcParams.update({'axes.linewidth':1.5})
+mpl.rcParams.update({'axes.labelsize':'large'})
+mpl.rcParams.update({'xtick.major.size':6})
+mpl.rcParams.update({'xtick.minor.size':4})
+mpl.rcParams.update({'ytick.major.size':6})
+mpl.rcParams.update({'ytick.minor.size':4})
+mpl.rcParams.update({'xtick.major.width':1.5})
+mpl.rcParams.update({'xtick.minor.width':1.0})
+mpl.rcParams.update({'ytick.major.width':1.5})
+mpl.rcParams.update({'ytick.minor.width':1.0})
+mpl.rcParams.update({'legend.frameon':False,'legend.framealpha':0.0})
+
+x    = np.linspace( min(Data),max(Data),1001 )
+Dist = (1/ sqrt(2*np.pi*s*s))*exp(-(x-mean)*(x-mean)/2.0/s/s)
+# colores = sns.cubehelix_palette(len(y)+4, reverse=True, start=-0.5, rot=0.3)
+colores = sns.cubehelix_palette(len(bins), reverse=True, start=.5, rot=-.75)
+
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(7.5,7.5))
+
+axes.plot( x,Dist,c='black',label=r"{\rm Gaussiana}",lw=4,alpha=0.4,zorder=3 )
+
+ymax = 0.16
+
+
+
+n, bins, patches = axes.hist(Data, bins, density=True,rwidth=0.95,zorder=2)
+
+fracs = n / n.max()
+ii = -1
+for thisfrac, thispatch in zip(fracs, patches):
+    ii += 1
+    thispatch.set_facecolor(colores[ii])
+    
+dy = 0.008
+dx = 0.15
+for vv, xx in zip(n,bins):
+    Str = r'$\mathbf{'+r'{0:.2f}'.format(vv)+r'}$'
+    axes.text(xx+dx,vv-dy,Str,color="white",fontsize=22)
+
+    
+# ticks en el eje x
+axes.set_xticks(bins)
+labels = [ r"${0:.3}$".format(x) for x in bins ]
+axes.set_xticklabels( labels )
+
+# Etiquetas
+axes.set_title(r"${\rm Mediciones}\,{\rm de}\,{\rm longitud}\,({\rm cm})$")
+axes.set_xlabel(r"${\rm Longitud}\,{({\rm cm})}$")
+axes.set_ylabel(r"${\rm Frecuencias}\,{\rm relativas}$")
+
+# axes.plot( [mean,mean],[0,ymax],ls='-',c="red",    label=r"$\bar{m}=\,$"   +r"${0:.1f}\,\pm{1:.1f}\,$".format(mean,uA)+r"${\rm mg}$" )
+# axes.plot( [moda,moda],[0,ymax],ls='--',c="#28DDA2",label=r"${\rm moda}=\,$"+r"${0:.1f}\,$".format(moda)+r"$\,{\rm mg}$" )
+# axes.plot( [mediana,mediana],[0,ymax],ls=':',c="#5E99CF",label=r"${\rm mediana}=\,$"+r"${0:.1f}\,$".format(mediana)+r"$\,{\rm mg}$" )
+
+axes.plot( [mean,mean],[0,ymax],      ls='-', c="red",  lw=4,alpha=0.6, 
+          label=r"$\bar{m}=\,$"   +r"${0:.1f}\,\pm{1:.1f}\,$".format(mean,uA)+r"${\rm cm}$", zorder=1 )
+
+# axes.plot( [moda,moda],[0,ymax],      ls='--',c="red",  lw=4,alpha=0.6, 
+#          label=r"${\rm moda}=\,$"+r"${0:.1f}\,$".format(moda)+r"$\,{\rm cm}$",              zorder=1 )
+
+axes.plot( [mediana,mediana],[0,ymax],ls=':', c="black",lw=4,alpha=0.6, 
+          label=r"${\rm mediana}=\,$"+r"${0:.1f}\,$".format(mediana)+r"$\,{\rm cm}$",        zorder=1 )
+
+
+
+
+axes.set_ylim(0,ymax)
+# axes.set_xlim(3.4,4.4)
+
+axes.legend(loc=1,frameon=True,framealpha=1.0)
+# axes.grid()
+
+axes.spines['top'].set_visible(False)
+axes.spines['right'].set_visible(False)
+axes.spines['bottom'].set_visible(False)
+axes.spines['left'].set_visible(False)
+
+fig.tight_layout()
+
+# fig.savefig("Histograma.pdf")
+
+
+```

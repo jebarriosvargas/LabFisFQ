@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -80,6 +61,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -171,14 +154,92 @@ div.csl-indent {
 </header>
 
 <p>This is a book created from markdown and executable code.</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
+<p>Considere el siguiente conjunto de datos que se midieron mediante una experiencia en el laboratorio siguiendo el modelo de caída libre. La resolución del cronómetro (empleado para medir el tiempo) es de <span class="math inline">\(0.01\,{\rm s}\)</span> y la resolución de la regla (empleada para medir la longitud) es <span class="math inline">\(1\,{\rm cm}\)</span>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Altura 1</th>
+<th>Altura 2</th>
+<th>Altura 3</th>
+<th>Altura 4</th>
+<th>Altura 5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>(<span class="math inline">\(100\,{\rm cm}\)</span>)</td>
+<td>(<span class="math inline">\(80\,{\rm cm}\)</span>)</td>
+<td>(<span class="math inline">\(60\,{\rm cm}\)</span>)</td>
+<td>(<span class="math inline">\(50\,{\rm cm}\)</span>)</td>
+<td>(<span class="math inline">\(40\,{\rm cm}\)</span>)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0.46</td>
+<td>0.43</td>
+<td>0.37</td>
+<td>0.33</td>
+<td>0.27</td>
+</tr>
+<tr class="even">
+<td>Tiempo de</td>
+<td>0.47</td>
+<td>0.42</td>
+<td>0.37</td>
+<td>0.34</td>
+<td>0.28</td>
+</tr>
+<tr class="odd">
+<td>caída libre</td>
+<td>0.48</td>
+<td>0.42</td>
+<td>0.38</td>
+<td>0.32</td>
+<td>0.28</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\({\rm s}\)</span>)</td>
+<td>0.46</td>
+<td>0.41</td>
+<td>0.36</td>
+<td>0.30</td>
+<td>0.29</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0.46</td>
+<td>0.41</td>
+<td>0.37</td>
+<td>0.33</td>
+<td>0.29</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Determine el tiempo promedio y su incertidumbre con su incertidumbre para cada altura.</li>
+<li>Utilizando los tiempos promedios para cada altura realice los gráficos de: (i) tiempo vs altura y (tiempo)<span class="math inline">\(^2\)</span> vs altura. ¿Cuál de los dos gráficos esperaría que sea una recta?</li>
+<li>Realice la regresión lineal por el método de cuadrados mínimos y obtenga el valor de la pendiente y su incertidumbre, completando la siguiente tabla:</li>
+</ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
-</div>
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

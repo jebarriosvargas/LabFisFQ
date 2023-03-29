@@ -8,7 +8,9 @@ book:
   date: "03/28/2023"
   chapters:
     - index.qmd
-    - intro.qmd
+    - tarea1.qmd
+    - tarea2.qmd
+    - caidalibre.qmd
     - summary.qmd
     - references.qmd
 
@@ -18,5 +20,4 @@ format:
   html:
     theme: minty
     fontsize: 0.6em
-    css: styles.css
 

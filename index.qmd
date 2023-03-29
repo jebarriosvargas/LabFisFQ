@@ -1,5 +1,6 @@
-# Laboratorio de Física 
+# Inicio
 
-This is a Quarto book.
+En el sitio se encuentran una selección de notas del curso de Laboratorio de Física (clave: 1210) de la Facultad de Química, UNAM.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+

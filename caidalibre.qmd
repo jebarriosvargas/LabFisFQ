@@ -1,0 +1,23 @@
+# Introduction
+
+This is a book created from markdown and executable code.
+
+
+Considere el siguiente conjunto de datos que se midieron mediante una experiencia en el laboratorio
+siguiendo el modelo de caída libre. La resolución del cronómetro (empleado para medir el tiempo) es de $0.01\,{\rm s}$ y la resolución de la regla (empleada para medir la longitud) es $1\,{\rm cm}$.
+
+
+|| Altura 1          | Altura 2         | Altura 3         |Altura 4         | Altura 5 |
+|-|-                 |      -            |         -         |      -           |          -|
+|| ($100\,{\rm cm}$) | ($80\,{\rm cm}$) | ($60\,{\rm cm}$) | ($50\,{\rm cm}$) | ($40\,{\rm cm}$)|
+||                 |                  |                  |                |         |
+|             | 0.46 | 0.43 | 0.37 | 0.33 | 0.27 |
+|Tiempo de    | 0.47 | 0.42 | 0.37 | 0.34 | 0.28 |
+|caída libre  | 0.48 | 0.42 | 0.38 | 0.32 | 0.28 |
+|(${\rm s}$)  | 0.46 | 0.41 | 0.36 | 0.30 | 0.29 |
+|             | 0.46 | 0.41 | 0.37 | 0.33 | 0.29 |
+
+* Determine el tiempo promedio y su incertidumbre con su incertidumbre para cada altura.
+* Utilizando los tiempos promedios para cada altura realice los gráficos de: (i) tiempo vs altura y (tiempo)$^2$ vs altura. ¿Cuál de los dos gráficos esperaría que sea una recta?
+* Realice la regresión lineal por el método de cuadrados mínimos y obtenga el valor de la pendiente y su incertidumbre, completando la siguiente tabla:
+
