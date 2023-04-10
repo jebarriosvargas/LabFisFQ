@@ -10,6 +10,8 @@ book:
     - index.qmd
     - tarea1.qmd
     - tarea2.qmd
+    - tarea2_bis.qmd
+    - tarea3.qmd
     - caidalibre.qmd
     - summary.qmd
     - references.qmd

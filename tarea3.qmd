@@ -1,0 +1,49 @@
+---
+format:
+  html:
+    code-fold: true
+---
+
+# Tarea 3 - Ley de enfriamiento
+
+La ley de enfriamiento de Newton nos dice que la tasa de pérdida de calor de un cuerpo es directamente proporcional a la diferencia de temperatura entre el cuerpo y su entorno.
+
+
+De forma simplificada
+$$
+\frac{d}{dt} T = -\kappa \big[ T(t)-T_a \big]
+$$
+
+
+
+Al resolver la ecuación anterior obtenemos
+$$
+\ln \left| \frac{T(t)-T_a}{T(t_0)-T_a} \right| = -\kappa (t-t_0)
+$$
+
+
+| Time [${\rm min}$] | Temperatura [$^\circ {\rm C}$] |
+| --- | --- |
+|0 | 80 |
+| 0.25 | 79 |
+| 0.5 | 78 |
+| 0.75 | 77 |
+| 1 | 76 |
+| 2 | 74 |
+| 3 | 71 |
+| 4 | 68 |
+| 5 | 65 |
+| 6 | 64 |
+| 7 | 62 |
+| 8 | 59 |
+| 9 | 57 |
+| 10| 55 |
+| 15| 48 |
+| 20| 42 |
+| 25| 38 |
+| 30| 34 |
+| 60| 26 |
+| 90| 25 |
+
+
+

@@ -17,9 +17,9 @@ Se midió una vez el diámetro, el espesor y la masa de una moneda para determin
 
 |**Mensurando**|**Instrumento**|**Medida**|**Incertidumbre del instrumento**|
 |-|-|-|-|
-|Diámetro | Calibrador vernier | $26.25$ | $\pm 0.05\,{\rm mm}$|
-|Espesor | Tornillo micrométrico | $2.448$ | $\pm 0.001\,{\rm mm}$|
-|Masa | Balanza granataria con escala vernier | $62.09$ | $\pm 0.01\,{\rm g}$|
+|Diámetro | Calibrador vernier | $26.25\,{\rm mm}$ | $\pm 0.05\,{\rm mm}$|
+|Espesor | Tornillo micrométrico | $2.448\,{\rm mm}$ | $\pm 0.001\,{\rm mm}$|
+|Masa | Balanza granataria con escala vernier | $62.09\,{\rm g}$ | $\pm 0.01\,{\rm g}$|
 
 ¿Cuál es la densidad de la moneda en ${\rm g/mm}^3$?
 
