@@ -154,14 +154,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./tarea2_bis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea2_bis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tarea 3 - Ley de enfriamiento</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./caidalibre.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,6 +295,8 @@ u_C(\rho) = \sqrt{  \bigg(\frac{\partial \rho}{\partial M}\bigg|_{\bar{M},\bar{D
 \frac{\partial \rho}{\partial h} = -\frac{4M}{\pi D^2 h^2}
 \]</span></p>
 <div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>π <span class="op">=</span>pi</span>
@@ -304,6 +324,7 @@ u_C(\rho) = \sqrt{  \bigg(\frac{\partial \rho}{\partial M}\bigg|_{\bar{M},\bar{D
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>uρ_C <span class="op">=</span> sqrt( (dρdM<span class="op">*</span>uM_C)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (dρdD<span class="op">*</span>uD_C)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (dρdh<span class="op">*</span>uh_C)<span class="op">**</span><span class="dv">2</span>   )</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ρ ="</span>,ρ)</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"u(ρ) = "</span>,uρ_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.0007548142485054245
 -0.003570774604929662
@@ -313,8 +334,11 @@ u(ρ) =  0.000179720825671232</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'ρ    = </span><span class="sc">{0:.4f}</span><span class="st"> [g/mm³]'</span>.<span class="bu">format</span>(ρ))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(ρ) = </span><span class="sc">{0:.4f}</span><span class="st"> [g/mm³]'</span>.<span class="bu">format</span>(uρ_C))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>ρ    = 0.0469 [g/mm³]
 u(ρ) = 0.0002 [g/mm³]</code></pre>
@@ -496,10 +520,15 @@ u(ρ) = 0.0002 [g/mm³]</code></pre>
 </tbody>
 </table>
 <div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Data <span class="op">=</span> array( [ <span class="fl">0.06</span> , <span class="fl">2.7</span>  , <span class="fl">3.93</span> , <span class="fl">4.66</span> , <span class="fl">5.13</span> , <span class="fl">5.59</span> , <span class="fl">5.91</span> , <span class="fl">6.6</span>  , <span class="fl">7.26</span> , <span class="fl">7.86</span> , <span class="fl">8.28</span> , <span class="fl">8.69</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">9.76</span> ,<span class="fl">11.3</span>  , <span class="fl">1.04</span> , <span class="fl">2.89</span> , <span class="fl">4.06</span> , <span class="fl">4.77</span> , <span class="fl">5.19</span> , <span class="fl">5.59</span> , <span class="fl">6.03</span> , <span class="fl">6.68</span> , <span class="fl">7.31</span> , <span class="fl">7.88</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">8.39</span> , <span class="fl">8.76</span> , <span class="fl">9.76</span> ,<span class="fl">11.43</span> , <span class="fl">1.21</span> , <span class="fl">3.07</span> , <span class="fl">4.15</span> , <span class="fl">4.86</span> , <span class="fl">5.19</span> , <span class="fl">5.66</span> , <span class="fl">6.13</span> , <span class="fl">6.72</span>,</span>
@@ -512,8 +541,11 @@ u(ρ) = 0.0002 [g/mm³]</code></pre>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">8.62</span> , <span class="fl">9.5</span>  ,<span class="fl">10.83</span> , <span class="fl">2.47</span> , <span class="fl">3.78</span> , <span class="fl">4.55</span> , <span class="fl">5.08</span> , <span class="fl">5.55</span> , <span class="fl">5.9</span>  , <span class="fl">6.5</span>  , <span class="fl">7.03</span> , <span class="fl">7.83</span>,</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fl">8.23</span> , <span class="fl">8.66</span> , <span class="fl">9.6</span>  ,<span class="fl">11.13</span> , <span class="fl">2.6</span>  , <span class="fl">3.86</span> , <span class="fl">4.57</span> , <span class="fl">5.08</span> , <span class="fl">5.57</span> , <span class="fl">5.91</span> , <span class="fl">6.57</span> , <span class="fl">7.11</span>,</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">7.85</span> , <span class="fl">8.23</span> , <span class="fl">8.66</span> , <span class="fl">9.69</span> ,<span class="fl">11.21</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> Data.mean()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"media aritmética : </span><span class="sc">{0:.3}</span><span class="st"> mg"</span>.<span class="bu">format</span>(mean))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -569,6 +601,7 @@ u(ρ) = 0.0002 [g/mm³]</code></pre>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>axes.grid()</span>
 <span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>media aritmética : 6.62 mg
 mínimo valor de v: 0.06 mg
@@ -595,11 +628,11 @@ Incertidumbre tipo A  (u_A) : 0.226 mg
 Regla de Sturges : 9</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_11184/3254308986.py:11: FutureWarning:
+<pre><code>/tmp/ipykernel_28342/3254308986.py:11: FutureWarning:
 
 Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
 
-/tmp/ipykernel_11184/3254308986.py:12: FutureWarning:
+/tmp/ipykernel_28342/3254308986.py:12: FutureWarning:
 
 Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
 </code></pre>
@@ -609,6 +642,8 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 </div>
 </div>
 <div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
@@ -649,11 +684,14 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.savefig("Histograma.pdf")</span></span>
 <span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="tarea1_files/figure-html/cell-7-output-1.png" width="756" height="753"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">14</span>, <span class="st">'text.usetex'</span>: <span class="va">True</span>})</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.linewidth'</span>:<span class="fl">1.5</span>})</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.labelsize'</span>:<span class="st">'large'</span>})</span>
@@ -735,6 +773,7 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.savefig("Histograma.pdf")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="tarea1_files/figure-html/cell-8-output-1.png" width="699" height="699"></p>
 </div>

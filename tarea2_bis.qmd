@@ -6,14 +6,168 @@ format:
 
 # Ejercicio Ajuste Lineal 
 
+Datos caída libre
 
-| X (Δx) |  Y (T) |
-|---|---|
-| 20 | 0.20104 |
-|25 | 0.24930 |
-| 30 | 0.31100 |
-| 35 | 0.34878| 
-| 40 | 0.40206 |
-| 45 | 0.44086 |
-| 50 | 0.49794 |
 
+|h |t1|t2|t3|t4|t5|
+| - | - |  - |    - |  - |   -|
+|1.0| 0.46| 0.47 |0.48| 0.46| 0.46|
+|0.8| 0.43| 0.42 |0.42| 0.41| 0.41|
+|0.6| 0.37| 0.37 |0.38| 0.36| 0.37|
+|0.5| 0.33| 0.34 |0.32| 0.30| 0.33|
+|0.4| 0.27| 0.28 |0.28| 0.29| 0.29|
+
+```{python}
+from pylab import *
+from scipy import stats
+import seaborn as sns
+from matplotlib import colors
+
+from matplotlib import font_manager as fm, rcParams
+import os
+
+mpl.rcParams.update({'font.size': 18, 'text.usetex': True})
+mpl.rcParams.update({'axes.linewidth':1.5})
+mpl.rcParams.update({'axes.labelsize':'large'})
+mpl.rcParams.update({'xtick.major.size':6})
+mpl.rcParams.update({'xtick.minor.size':4})
+mpl.rcParams.update({'ytick.major.size':6})
+mpl.rcParams.update({'ytick.minor.size':4})
+mpl.rcParams.update({'xtick.major.width':1.5})
+mpl.rcParams.update({'xtick.minor.width':1.0})
+mpl.rcParams.update({'ytick.major.width':1.5})
+mpl.rcParams.update({'ytick.minor.width':1.0})
+mpl.rcParams.update({'legend.frameon':False,'legend.framealpha':0.0})
+
+fpath = os.path.join("HELVETNL.TTF")
+prop  = fm.FontProperties(fname=fpath,size=18)
+fname = os.path.split(fpath)[1]
+```
+
+
+```{python}
+Datos = array([[1.0, 0.46, 0.47, 0.48, 0.46, 0.46],
+[0.8, 0.43, 0.42, 0.42, 0.41, 0.41],
+[0.6, 0.37, 0.37, 0.38, 0.36, 0.37],
+[0.5, 0.33, 0.34, 0.32, 0.30, 0.33],
+[0.4, 0.27, 0.28, 0.28, 0.29, 0.29]])
+
+h     = Datos.T[0]
+times = Datos.T[1:]
+```
+
+
+$$
+\displaystyle u_{\rm C}(t) = \sqrt{ \bigg[ \sqrt{ \frac{\sum_i (t_i-\bar{t})^2}{n-1} }\bigg( \frac{1}{\sqrt{n}} \bigg) \bigg]^2 + u_{\rm B}^2(t) }
+$$
+
+
+```{python}
+n    = len(times)   # verificar
+uB_t = 0.01
+t    = np.mean(times,axis=0)
+u_t  = np.sqrt( ( np.std(times,axis=0)*(1/(n-1)) )*( np.std(times,axis=0)*(1/(n-1)) ) + uB_t*uB_t )
+
+```
+
+```{python}
+print('t =',t)
+print('u(t)= ',u_t)
+```
+
+```{python}
+uB_h = 0.01 
+u_h  = uB_h*np.ones_like(h)
+print('u(h)=',u_h)
+```
+
+
+
+```{python}
+
+# Datos
+x    = h
+xerr = u_h
+y    = t*t
+yerr = 2*t*u_t
+
+Sxy = np.sum(x*y)
+Sx  = np.sum(x)
+Sy  = np.sum(y)
+Sxx = np.sum(x*x)
+Fac = n*Sxx-Sx*Sx
+m   = (n*Sxy-Sx*Sy)/Fac
+b   = (Sxx*Sy-Sx*Sxy)/Fac
+print ('m = {0:.2E} s^2/m'.format(m))
+print ('b = {0:.2E} s^2'.format(b))
+
+```
+
+```{python}
+Sy_mx_b = np.sum( (y-m*x - b)*(y-m*x - b) )
+u_m     = np.sqrt(  n*Sy_mx_b/(n-2)/Fac  )
+u_b     = np.sqrt( Sxx*Sy_mx_b/(n-2)/Fac )
+print ('u(m) = {0:.2e} s^2/m'.format(u_m))
+print ('u(b) = {0:.2e} s^2'.format(u_b))
+```
+
+```{python}
+g   = 2/m
+u_g = 2.0/m/m*u_m 
+print ('g    = {0:.8f} m/s^2'.format(g))
+print ('u(g) = {0:.8f} m/s^2'.format(u_g))
+print ('')
+print ('g    = {0:.1f} m/s^2'.format(g))
+print ('u(g) = {0:.1f} m/s^2'.format(u_g))
+```
+
+```{python}
+fig,axes = plt.subplots(ncols=2,nrows=1,figsize=(13,6))
+
+xline = np.linspace(x.min()-0.1,x.max()+0.1,400)
+yline = m*xline + b
+
+axes[0].set_title(r'Ca\'ida libre: Tiempo al cuadrado vs altura',fontproperties=prop)
+
+axes[0].errorbar(x,y,xerr=xerr,yerr=yerr ,fmt='o',mfc='none',ms=10,
+                  elinewidth=1,capthick=1,ecolor='b',zorder=2,
+                  markeredgecolor='b',dash_capstyle='round',capsize=2,label=r'Datos')
+
+linelabel = r'$g = ({0:.1f}\pm{1:.1f})$'.format(g,u_g)+r'$\;{\rm m/s}^2$'
+
+axes[0].plot(xline,yline,c='red',lw=3,label=linelabel,zorder=1)
+
+axes[0].set_yticks([0.05,0.1,0.15,0.2,0.25])
+
+axes[0].set_xlabel('Altura ('+r'${\rm m}$'+')',fontproperties=prop)
+axes[0].set_ylabel(r'$t^2$ ('+r'${\rm s}^2$'+')',fontproperties=prop)
+
+axes[0].legend()
+
+#############################
+
+
+axes[1].set_title(r'Ca\'ida libre: Tiempo vs altura',fontproperties=prop)
+
+axes[1].errorbar(x,sqrt(y),xerr=xerr,yerr=0.5*yerr/sqrt(y) ,fmt='o',mfc='none',ms=10,
+                  elinewidth=1,capthick=1,ecolor='b',zorder=2,
+                  markeredgecolor='b',dash_capstyle='round',capsize=2,label=r'Datos')
+
+linelabel = r'$g = ({0:.1f}\pm{1:.1f})$'.format(g,u_g)+r'$\;{\rm m/s}^2$'
+
+axes[1].plot(xline,sqrt(yline),c='red',lw=3,label=linelabel,zorder=1)
+
+# axes[1].set_yticks([0.05,0.1,0.15,0.2,0.25])
+
+axes[1].set_xlabel('Altura ('+r'${\rm m}$'+')',fontproperties=prop)
+axes[1].set_ylabel(r'Tiempo ('+r'${\rm s}$'+')',fontproperties=prop)
+
+axes[1].legend()
+
+
+
+fig.tight_layout()
+
+fig.savefig('AjusteLineal.pdf',dpi=150)
+
+```

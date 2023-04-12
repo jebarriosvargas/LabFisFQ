@@ -11,6 +11,7 @@ book:
     - tarea1.qmd
     - tarea2.qmd
     - tarea2_bis.qmd
+    - tarea2_bis.qmd
     - tarea3.qmd
     - caidalibre.qmd
     - summary.qmd
@@ -21,5 +22,5 @@ bibliography: references.bib
 format:
   html:
     theme: minty
-    fontsize: 0.6em
+    fontsize: 0.8em
 

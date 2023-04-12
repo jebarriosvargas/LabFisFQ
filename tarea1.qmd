@@ -1,3 +1,10 @@
+---
+format:
+  html:
+    code-fold: true
+---
+
+
 # Tarea 1 - La medición y su incertidumbre
 
 ## Mediciones directas e indirectas
