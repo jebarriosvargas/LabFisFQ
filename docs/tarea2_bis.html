@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>LabFisFQ - 4&nbsp; Ejercicio Ajuste Lineal</title>
+<title>LabFisFQ - 4&nbsp; Ejercicio - Caída libre</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tarea2_bis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tarea2_bis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio - Caída libre</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,13 +155,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tarea2_bis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio - Caída libre</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tarea2_bis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio - Caída libre</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -172,14 +172,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./caidalibre.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -201,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio Ajuste Lineal</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ejercicio - Caída libre</span></h1>
 </div>
 
 
@@ -216,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Datos caída libre</p>
+<p>Considere el siguiente conjunto de datos que se midieron mediante una experiencia en el laboratorio siguiendo el modelo de caída libre. La resolución del cronómetro (empleado para medir el tiempo) es de <span class="math inline">\(0.01\,{\rm s}\)</span> y la resolución de la regla (empleada para medir la longitud) es <span class="math inline">\(1\,{\rm cm}\)</span>.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -325,15 +319,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>u_t  <span class="op">=</span> np.sqrt( ( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) )<span class="op">*</span>( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) ) <span class="op">+</span> uB_t<span class="op">*</span>uB_t )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li>Determine el tiempo promedio y su incertidumbre con su incertidumbre para cada altura.</li>
+</ul>
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'t ='</span>,t)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(t)= '</span>,u_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'tprom [s] ='</span>,t)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(t) [s] ='</span>,u_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>t = [0.466 0.418 0.37  0.324 0.282]
-u(t)=  [0.01019804 0.01017349 0.01012423 0.01055936 0.01017349]</code></pre>
+<pre><code>tprom [s] = [0.466 0.418 0.37  0.324 0.282]
+u(t) [s] = [0.01019804 0.01017349 0.01012423 0.01055936 0.01017349]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
@@ -341,12 +338,17 @@ u(t)=  [0.01019804 0.01017349 0.01012423 0.01055936 0.01017349]</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>uB_h <span class="op">=</span> <span class="fl">0.01</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>u_h  <span class="op">=</span> uB_h<span class="op">*</span>np.ones_like(h)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(h)='</span>,u_h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'h [m] ='</span>,h)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(h) [m] ='</span>,u_h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>u(h)= [0.01 0.01 0.01 0.01 0.01]</code></pre>
+<pre><code>h [m] = [1.  0.8 0.6 0.5 0.4]
+u(h) [m] = [0.01 0.01 0.01 0.01 0.01]</code></pre>
 </div>
 </div>
+<ul>
+<li>Realice la regresión lineal por el método de cuadrados mínimos y obtenga el valor de la pendiente y su incertidumbre</li>
+</ul>
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
@@ -363,12 +365,12 @@ u(t)=  [0.01019804 0.01017349 0.01012423 0.01055936 0.01017349]</code></pre>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Fac <span class="op">=</span> n<span class="op">*</span>Sxx<span class="op">-</span>Sx<span class="op">*</span>Sx</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>m   <span class="op">=</span> (n<span class="op">*</span>Sxy<span class="op">-</span>Sx<span class="op">*</span>Sy)<span class="op">/</span>Fac</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>b   <span class="op">=</span> (Sxx<span class="op">*</span>Sy<span class="op">-</span>Sx<span class="op">*</span>Sxy)<span class="op">/</span>Fac</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'m = </span><span class="sc">{0:.2E}</span><span class="st"> s^2/m'</span>.<span class="bu">format</span>(m))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'b = </span><span class="sc">{0:.2E}</span><span class="st"> s^2'</span>.<span class="bu">format</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'m = </span><span class="sc">{0:.2E}</span><span class="st"> s²/m'</span>.<span class="bu">format</span>(m))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'b = </span><span class="sc">{0:.2E}</span><span class="st"> s²'</span>.<span class="bu">format</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>m = 2.27E-01 s^2/m
-b = -7.00E-03 s^2</code></pre>
+<pre><code>m = 2.27E-01 s²/m
+b = -7.00E-03 s²</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="7">

@@ -4,9 +4,9 @@ format:
     code-fold: true
 ---
 
-# Ejercicio Ajuste Lineal 
+# Ejercicio - Caída libre
 
-Datos caída libre
+Considere el siguiente conjunto de datos que se midieron mediante una experiencia en el laboratorio siguiendo el modelo de caída libre. La resolución del cronómetro (empleado para medir el tiempo) es de $0.01\,{\rm s}$ y la resolución de la regla (empleada para medir la longitud) es $1\,{\rm cm}$.
 
 
 |h |t1|t2|t3|t4|t5|
@@ -70,18 +70,22 @@ u_t  = np.sqrt( ( np.std(times,axis=0)*(1/(n-1)) )*( np.std(times,axis=0)*(1/(n-
 
 ```
 
+* Determine el tiempo promedio y su incertidumbre con su incertidumbre para cada altura.
+
+
 ```{python}
-print('t =',t)
-print('u(t)= ',u_t)
+print('tprom [s] =',t)
+print('u(t) [s] =',u_t)
 ```
 
 ```{python}
 uB_h = 0.01 
 u_h  = uB_h*np.ones_like(h)
-print('u(h)=',u_h)
+print('h [m] =',h)
+print('u(h) [m] =',u_h)
 ```
 
-
+* Realice la regresión lineal por el método de cuadrados mínimos y obtenga el valor de la pendiente y su incertidumbre
 
 ```{python}
 
@@ -98,8 +102,8 @@ Sxx = np.sum(x*x)
 Fac = n*Sxx-Sx*Sx
 m   = (n*Sxy-Sx*Sy)/Fac
 b   = (Sxx*Sy-Sx*Sxy)/Fac
-print ('m = {0:.2E} s^2/m'.format(m))
-print ('b = {0:.2E} s^2'.format(b))
+print ('m = {0:.2E} s²/m'.format(m))
+print ('b = {0:.2E} s²'.format(b))
 
 ```
 

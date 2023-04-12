@@ -46,4 +46,159 @@ $$
 | 90| 25 |
 
 
+```{python}
+from pylab import *
+from scipy import stats
+import seaborn as sns
+from matplotlib import colors
 
+from matplotlib import font_manager as fm, rcParams
+import os
+
+mpl.rcParams.update({'font.size': 18, 'text.usetex': True})
+mpl.rcParams.update({'axes.linewidth':1.5})
+mpl.rcParams.update({'axes.labelsize':'large'})
+mpl.rcParams.update({'xtick.major.size':6})
+mpl.rcParams.update({'xtick.minor.size':4})
+mpl.rcParams.update({'ytick.major.size':6})
+mpl.rcParams.update({'ytick.minor.size':4})
+mpl.rcParams.update({'xtick.major.width':1.5})
+mpl.rcParams.update({'xtick.minor.width':1.0})
+mpl.rcParams.update({'ytick.major.width':1.5})
+mpl.rcParams.update({'ytick.minor.width':1.0})
+mpl.rcParams.update({'legend.frameon':False,'legend.framealpha':0.0})
+
+fpath = os.path.join("HELVETNL.TTF")
+prop  = fm.FontProperties(fname=fpath,size=18)
+fname = os.path.split(fpath)[1]
+
+```
+
+```{python}
+Datos = array([[0.00, 80],
+[0.25, 79],
+[0.50, 78],
+[0.75, 77],
+[1.00, 76],
+[2.00, 74],
+[3.00, 71],
+[4.00, 68],
+[5.00, 65],
+[6.00, 64],
+[7.00, 62],
+[8.00, 59],
+[9.00, 57],
+[10.0, 55],
+[15.0, 48],
+[20.0, 42],
+[25.0, 38],
+[30.0, 34],
+[60.0, 26],
+[90.0, 25]])
+
+t = Datos.T[0]
+T = Datos.T[1]
+```
+
+
+```{python}
+u_t   = 0.05   # min
+u_T   = 1      # °C
+Ta    = 24
+Ti    = 80
+```
+
+$$\displaystyle T(t) = T_a + \big[ T_i-T_a \big]{\rm e}^{-\kappa t}$$ 
+$$ \displaystyle {\rm ln} \bigg| \frac{T(t)-T_a}{T_i-T_a} \bigg| = -\kappa t$$
+$$ T_a= 24^\circ{\rm C} \quad T_i = 80^\circ{\rm C}$$
+$$ y = mx+b $$
+$$\displaystyle m = -\kappa $$
+
+```{python}
+# Datos
+x    = t
+xerr = u_t
+y    = log( (T-Ta)/(Ti-Ta) )
+yerr = u_T/(T-Ta)
+n    = len(t)
+```
+
+```{python}
+Sxy = np.sum(x*y)
+Sx  = np.sum(x)
+Sy  = np.sum(y)
+Sxx = np.sum(x*x)
+Fac = n*Sxx-Sx*Sx
+m   = (n*Sxy-Sx*Sy)/Fac
+b   = (Sxx*Sy-Sx*Sxy)/Fac
+print ('m = {0:.2E} 1/min'.format(m))
+print ('b = {0:.2E} '.format(b))
+```
+
+```{python}
+Sy_mx_b = np.sum( (y-m*x - b)*(y-m*x - b) )
+u_m     = np.sqrt(  n*Sy_mx_b/(n-2)/Fac  )
+u_b     = np.sqrt( Sxx*Sy_mx_b/(n-2)/Fac )
+print ('u(m) = {0:.2e} 1/min'.format(u_m))
+print ('u(b) = {0:.2e} '.format(u_b))
+```
+
+```{python}
+kappa   = -m
+u_kappa = u_m 
+print ('g    = {0:.8f} 1/min'.format(kappa))
+print ('u(g) = {0:.8f} 1/min'.format(u_kappa))
+print ('')
+print ('g    = {0:.3f} 1/min'.format(kappa))
+print ('u(g) = {0:.3f} 1/min'.format(u_kappa))
+```
+
+```{python}
+fig,axes = plt.subplots(ncols=2,nrows=1,figsize=(13,6))
+
+xline = np.linspace(x.min(),x.max(),400)
+yline = m*xline + b
+
+axes[0].set_title(r'Ley de enfriamiento: ln[ (T-Ta)/(Ti-Ta) ]  vs tiempo',fontproperties=prop)
+
+axes[0].errorbar(x,y,xerr=xerr,yerr=yerr ,fmt='o',mfc='none',ms=10,
+                  elinewidth=1,capthick=1,ecolor='b',zorder=2,
+                  markeredgecolor='b',dash_capstyle='round',capsize=2,label=r'Datos')
+
+linelabel = r'$\kappa = ({0:.3f}\pm{1:.3f})$'.format(kappa,u_kappa)+r'$\;{\rm min}^{-1}$'
+
+axes[0].plot(xline,yline,c='red',lw=3,label=linelabel,zorder=1)
+
+# axes[0].set_yticks([0.05,0.1,0.15,0.2,0.25])
+
+axes[0].set_xlabel('Tiempo ('+r'${\rm min}$'+')',fontproperties=prop)
+axes[0].set_ylabel(r'${\rm ln} \bigg| \frac{T(t)-T_a}{T_i-T_a} \bigg|$',fontproperties=prop)
+
+axes[0].legend()
+
+#############################
+
+
+axes[1].set_title(r'Ley de enfriamiento: temperatura vs tiempo',fontproperties=prop)
+
+axes[1].errorbar(x,Ta+(Ti-Ta)*exp(y),xerr=u_t,yerr=u_T ,fmt='o',mfc='none',ms=10,
+                  elinewidth=1,capthick=1,ecolor='b',zorder=2,
+                  markeredgecolor='b',dash_capstyle='round',capsize=2,label=r'Datos')
+
+linelabel = r'$\kappa = ({0:.3f}\pm{1:.3f})$'.format(kappa,u_kappa)+r'$\;{\rm min}^{-1}$'
+
+axes[1].plot(xline,Ta+(Ti-Ta)*exp(yline),c='red',lw=3,label=linelabel,zorder=1)
+
+# axes[1].set_yticks([0.05,0.1,0.15,0.2,0.25])
+
+axes[1].set_xlabel('Tiempo ('+r'${\rm min}$'+')',fontproperties=prop)
+axes[1].set_ylabel(r'Temperatura ('+r'$^\circ{\rm C}$'+')',fontproperties=prop)
+
+axes[1].legend()
+
+
+
+fig.tight_layout()
+
+# fig.savefig('AjusteLineal.pdf',dpi=150)
+```

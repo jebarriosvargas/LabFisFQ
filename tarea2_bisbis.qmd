@@ -4,7 +4,7 @@ format:
     code-fold: true
 ---
 
-# Resorte con masa
+# Ejercicio - Resorte con masa
 
 
 | M [g] | L [cm] |
