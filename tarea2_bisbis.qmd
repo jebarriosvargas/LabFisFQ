@@ -39,7 +39,7 @@ import seaborn as sns
 from matplotlib import colors
 
 from matplotlib import font_manager as fm, rcParams
-
+import os
 mpl.rcParams.update({'font.size': 18, 'text.usetex': True})
 mpl.rcParams.update({'axes.linewidth':1.5})
 mpl.rcParams.update({'axes.labelsize':'large'})
@@ -57,7 +57,7 @@ mpl.rcParams.update({'legend.frameon':False,'legend.framealpha':0.0})
 
 ```{python}
 # Datos
-Masa,X = array([[90.8,12.73],
+Datos = array([[90.8,12.73],
 [181.6,		13.00],
 [272.4,		13.03],
 [363.2,		13.06],
@@ -76,6 +76,8 @@ Masa,X = array([[90.8,12.73],
 [1543.6	,	14.61],
 [1634.4	,	14.43],
 [1725.2	,	14.73]])
+Masa = Datos.T[0]
+X = Datos.T[1]
 ```
 ```{python}
 n = len(Masa)
@@ -172,5 +174,5 @@ axes[1].legend()
 
 fig.tight_layout()
 
-fig.savefig('AjusteLineal.pdf',dpi=150)
+# fig.savefig('AjusteLineal.pdf',dpi=150)
 ```
