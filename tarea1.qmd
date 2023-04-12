@@ -158,8 +158,8 @@ print ("máximo valor de v: {0:.3} mg".format(max(Data)))
 print ("valor ejemplo : {0:.3}".format(Data[3]))
 
 print( sort(Data) )
-print ("Moda utilizando stats.mode() :",stats.mode(Data))
-moda    = stats.mode(Data)[0][0]
+print ("Moda utilizando stats.mode() :",stats.mode(Data,keepdims=True))
+moda    = stats.mode(Data,keepdims=True)[0][0]
 mediana = 0.5* ( sort(Data)[int(len(Data)/2)]+sort(Data)[int(len(Data+1)/2)] )
 print ("Moda                         : {0} mg".format(moda))
 print ("Mediana                      : {0} mg".format(mediana))
@@ -178,7 +178,11 @@ k = int( np.rint( 1 + np.log2(len(Data)) ) ) +1
 print ("Regla de Sturges : {0}".format( k ))
 bins = np.linspace(min(Data),max(Data),num=k+1,endpoint=True )
 
-fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(8,8))
+```
+
+```{python}
+
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(5,5))
 
 n, bins, patches = axes.hist(Data, bins, density=False, facecolor='#2D3862', alpha=0.75,rwidth=0.9)
 
@@ -196,7 +200,7 @@ axes.plot( [mean,mean],[0,40],ls='--',c="red",    label=r"$\bar{m}=\,$"   +r"${0
 axes.plot( [moda,moda],[0,40],ls='--',c="#28DDA2",label=r"${\rm moda}=\,$"+r"${0:.2f}\,$".format(moda)+r"$\,{\rm mg}$" )
 axes.plot( [mediana,mediana],[0,40],ls='--',c="#5E99CF",label=r"${\rm mediana}=\,$"+r"${0:.2f}\,$".format(mediana)+r"$\,{\rm mg}$" )
 
-axes.set_ylim(0,40)
+axes.set_ylim(0,60)
 # axes.set_xlim(3.4,4.4)
 
 axes.legend(loc=0,frameon=True,framealpha=1.0)
@@ -205,13 +209,12 @@ axes.grid()
 fig.tight_layout()
 ```
 
+
 ```{python}
 
 import seaborn as sns
 
-fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(8,8))
-
-
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(5,5))
 
 x    = np.linspace( min(Data),max(Data),1001 )
 Dist = (1/ sqrt(2*np.pi*s*s))*exp(-(x-mean)*(x-mean)/2.0/s/s)
@@ -238,7 +241,7 @@ axes.plot( [moda,moda],[0,ymax],ls='--',c="#28DDA2",label=r"${\rm moda}=\,$"+r"$
 axes.plot( [mediana,mediana],[0,ymax],ls='--',c="#5E99CF",label=r"${\rm mediana}=\,$"+r"${0:.2f}\,$".format(mediana)+r"$\,{\rm mg}$" )
 
 
-axes.set_ylim(0,ymax)
+axes.set_ylim(0,ymax+0.1)
 # axes.set_xlim(3.4,4.4)
 
 axes.legend(loc=1,frameon=True,framealpha=1.0)
@@ -252,7 +255,7 @@ fig.tight_layout()
 
 
 ```{python}
-mpl.rcParams.update({'font.size': 14, 'text.usetex': True})
+mpl.rcParams.update({'font.size': 12, 'text.usetex': True})
 mpl.rcParams.update({'axes.linewidth':1.5})
 mpl.rcParams.update({'axes.labelsize':'large'})
 mpl.rcParams.update({'xtick.major.size':6})
@@ -270,7 +273,7 @@ Dist = (1/ sqrt(2*np.pi*s*s))*exp(-(x-mean)*(x-mean)/2.0/s/s)
 # colores = sns.cubehelix_palette(len(y)+4, reverse=True, start=-0.5, rot=0.3)
 colores = sns.cubehelix_palette(len(bins), reverse=True, start=.5, rot=-.75)
 
-fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(7.5,7.5))
+fig, axes = plt.subplots(nrows=1,ncols=1,figsize=(5,5))
 
 axes.plot( x,Dist,c='black',label=r"{\rm Gaussiana}",lw=4,alpha=0.4,zorder=3 )
 
@@ -290,7 +293,7 @@ dy = 0.008
 dx = 0.15
 for vv, xx in zip(n,bins):
     Str = r'$\mathbf{'+r'{0:.2f}'.format(vv)+r'}$'
-    axes.text(xx+dx,vv-dy,Str,color="white",fontsize=22)
+    axes.text(xx+dx,vv-dy,Str,color="white",fontsize=12)
 
     
 # ticks en el eje x
@@ -319,7 +322,7 @@ axes.plot( [mediana,mediana],[0,ymax],ls=':', c="black",lw=4,alpha=0.6,
 
 
 
-axes.set_ylim(0,ymax)
+axes.set_ylim(0,ymax+0.03)
 # axes.set_xlim(3.4,4.4)
 
 axes.legend(loc=1,frameon=True,framealpha=1.0)

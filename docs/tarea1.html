@@ -550,8 +550,8 @@ u(ρ) = 0.0002 [g/mm³]</code></pre>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"valor ejemplo : </span><span class="sc">{0:.3}</span><span class="st">"</span>.<span class="bu">format</span>(Data[<span class="dv">3</span>]))</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( sort(Data) )</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Moda utilizando stats.mode() :"</span>,stats.mode(Data))</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>moda    <span class="op">=</span> stats.mode(Data)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Moda utilizando stats.mode() :"</span>,stats.mode(Data,keepdims<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>moda    <span class="op">=</span> stats.mode(Data,keepdims<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>mediana <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span> ( sort(Data)[<span class="bu">int</span>(<span class="bu">len</span>(Data)<span class="op">/</span><span class="dv">2</span>)]<span class="op">+</span>sort(Data)[<span class="bu">int</span>(<span class="bu">len</span>(Data<span class="op">+</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>)] )</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Moda                         : </span><span class="sc">{0}</span><span class="st"> mg"</span>.<span class="bu">format</span>(moda))</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Mediana                      : </span><span class="sc">{0}</span><span class="st"> mg"</span>.<span class="bu">format</span>(mediana))</span>
@@ -568,33 +568,7 @@ u(ρ) = 0.0002 [g/mm³]</code></pre>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">int</span>( np.rint( <span class="dv">1</span> <span class="op">+</span> np.log2(<span class="bu">len</span>(Data)) ) ) <span class="op">+</span><span class="dv">1</span></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Regla de Sturges : </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>( k ))</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.linspace(<span class="bu">min</span>(Data),<span class="bu">max</span>(Data),num<span class="op">=</span>k<span class="op">+</span><span class="dv">1</span>,endpoint<span class="op">=</span><span class="va">True</span> )</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>n, bins, patches <span class="op">=</span> axes.hist(Data, bins, density<span class="op">=</span><span class="va">False</span>, facecolor<span class="op">=</span><span class="st">'#2D3862'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>,rwidth<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ticks en el eje x</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>axes.set_xticks(bins)</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [ <span class="vs">r"$</span><span class="sc">{0:.3}</span><span class="vs">$"</span>.<span class="bu">format</span>(x) <span class="cf">for</span> x <span class="kw">in</span> bins ]</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>axes.set_xticklabels( labels )</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>axes.set_title(<span class="vs">r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$"</span>)</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>axes.set_xlabel(<span class="vs">r"${\rm Masas}\,{({\rm mg})}$"</span>)</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>axes.set_ylabel(<span class="vs">r"${\rm Frecuencias}$"</span>)</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>axes.plot( [mean,mean],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"red"</span>,    label<span class="op">=</span><span class="vs">r"$\bar</span><span class="sc">{m}</span><span class="vs">=\,$"</span>   <span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.3f}</span><span class="vs">\,\pm</span><span class="sc">{1:.3f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mean,uA)<span class="op">+</span><span class="vs">r"${\rm mg}$"</span> )</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>axes.plot( [moda,moda],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#28DDA2"</span>,label<span class="op">=</span><span class="vs">r"${\rm moda}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(moda)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>axes.plot( [mediana,mediana],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#5E99CF"</span>,label<span class="op">=</span><span class="vs">r"${\rm mediana}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mediana)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,<span class="dv">40</span>)</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># axes.set_xlim(3.4,4.4)</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>axes.legend(loc<span class="op">=</span><span class="dv">0</span>,frameon<span class="op">=</span><span class="va">True</span>,framealpha<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>axes.grid()</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.linspace(<span class="bu">min</span>(Data),<span class="bu">max</span>(Data),num<span class="op">=</span>k<span class="op">+</span><span class="dv">1</span>,endpoint<span class="op">=</span><span class="va">True</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>media aritmética : 6.62 mg
@@ -621,72 +595,90 @@ Desviación estándar muestral: 2.646 mg
 Incertidumbre tipo A  (u_A) : 0.226 mg
 Regla de Sturges : 9</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_28342/3254308986.py:11: FutureWarning:
-
-Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
-
-/tmp/ipykernel_28342/3254308986.py:12: FutureWarning:
-
-Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior of `mode` typically preserves the axis it acts along. In SciPy 1.11.0, this behavior will change: the default value of `keepdims` will become False, the `axis` over which the statistic is taken will be eliminated, and the value None will no longer be accepted. Set `keepdims` to True or False to avoid this warning.
-</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="tarea1_files/figure-html/cell-6-output-3.png" class="quarto-discovered-preview-image" width="756" height="753"></p>
-</div>
 </div>
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x    <span class="op">=</span> np.linspace( <span class="bu">min</span>(Data),<span class="bu">max</span>(Data),<span class="dv">1001</span> )</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Dist <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span> sqrt(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>s<span class="op">*</span>s))<span class="op">*</span>exp(<span class="op">-</span>(x<span class="op">-</span>mean)<span class="op">*</span>(x<span class="op">-</span>mean)<span class="op">/</span><span class="fl">2.0</span><span class="op">/</span>s<span class="op">/</span>s)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>axes.plot( x,Dist,label<span class="op">=</span><span class="vs">r"${\rm Gaussiana}$"</span> )</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="fl">0.16</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>n, bins, patches <span class="op">=</span> axes.hist(Data, bins, density<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'#2D3862'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>,rwidth<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ticks en el eje x</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>axes.set_xticks(bins)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [ <span class="vs">r"$</span><span class="sc">{0:.3}</span><span class="vs">$"</span>.<span class="bu">format</span>(x) <span class="cf">for</span> x <span class="kw">in</span> bins ]</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>axes.set_xticklabels( labels )</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>axes.set_title(<span class="vs">r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$"</span>)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>axes.set_xlabel(<span class="vs">r"${\rm Masas}\,{({\rm mg})}$"</span>)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>axes.set_ylabel(<span class="vs">r"${\rm Frecuencias}$"</span>)</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>axes.plot( [mean,mean],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"red"</span>,    label<span class="op">=</span><span class="vs">r"$\bar</span><span class="sc">{m}</span><span class="vs">=\,$"</span>   <span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.3f}</span><span class="vs">\,\pm</span><span class="sc">{1:.3f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mean,uA)<span class="op">+</span><span class="vs">r"${\rm mg}$"</span> )</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>axes.plot( [moda,moda],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#28DDA2"</span>,label<span class="op">=</span><span class="vs">r"${\rm moda}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(moda)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>axes.plot( [mediana,mediana],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#5E99CF"</span>,label<span class="op">=</span><span class="vs">r"${\rm mediana}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mediana)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,ymax)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># axes.set_xlim(3.4,4.4)</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>axes.legend(loc<span class="op">=</span><span class="dv">1</span>,frameon<span class="op">=</span><span class="va">True</span>,framealpha<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>axes.grid()</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.savefig("Histograma.pdf")</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n, bins, patches <span class="op">=</span> axes.hist(Data, bins, density<span class="op">=</span><span class="va">False</span>, facecolor<span class="op">=</span><span class="st">'#2D3862'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>,rwidth<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ticks en el eje x</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>axes.set_xticks(bins)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [ <span class="vs">r"$</span><span class="sc">{0:.3}</span><span class="vs">$"</span>.<span class="bu">format</span>(x) <span class="cf">for</span> x <span class="kw">in</span> bins ]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>axes.set_xticklabels( labels )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>axes.set_title(<span class="vs">r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>axes.set_xlabel(<span class="vs">r"${\rm Masas}\,{({\rm mg})}$"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>axes.set_ylabel(<span class="vs">r"${\rm Frecuencias}$"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>axes.plot( [mean,mean],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"red"</span>,    label<span class="op">=</span><span class="vs">r"$\bar</span><span class="sc">{m}</span><span class="vs">=\,$"</span>   <span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.3f}</span><span class="vs">\,\pm</span><span class="sc">{1:.3f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mean,uA)<span class="op">+</span><span class="vs">r"${\rm mg}$"</span> )</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>axes.plot( [moda,moda],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#28DDA2"</span>,label<span class="op">=</span><span class="vs">r"${\rm moda}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(moda)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>axes.plot( [mediana,mediana],[<span class="dv">0</span>,<span class="dv">40</span>],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#5E99CF"</span>,label<span class="op">=</span><span class="vs">r"${\rm mediana}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mediana)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,<span class="dv">60</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># axes.set_xlim(3.4,4.4)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>axes.legend(loc<span class="op">=</span><span class="dv">0</span>,frameon<span class="op">=</span><span class="va">True</span>,framealpha<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>axes.grid()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="tarea1_files/figure-html/cell-7-output-1.png" width="756" height="753"></p>
+<p><img src="tarea1_files/figure-html/cell-7-output-1.png" class="quarto-discovered-preview-image" width="465" height="465"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">14</span>, <span class="st">'text.usetex'</span>: <span class="va">True</span>})</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>x    <span class="op">=</span> np.linspace( <span class="bu">min</span>(Data),<span class="bu">max</span>(Data),<span class="dv">1001</span> )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Dist <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span> sqrt(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>s<span class="op">*</span>s))<span class="op">*</span>exp(<span class="op">-</span>(x<span class="op">-</span>mean)<span class="op">*</span>(x<span class="op">-</span>mean)<span class="op">/</span><span class="fl">2.0</span><span class="op">/</span>s<span class="op">/</span>s)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>axes.plot( x,Dist,label<span class="op">=</span><span class="vs">r"${\rm Gaussiana}$"</span> )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="fl">0.16</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>n, bins, patches <span class="op">=</span> axes.hist(Data, bins, density<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'#2D3862'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>,rwidth<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ticks en el eje x</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>axes.set_xticks(bins)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [ <span class="vs">r"$</span><span class="sc">{0:.3}</span><span class="vs">$"</span>.<span class="bu">format</span>(x) <span class="cf">for</span> x <span class="kw">in</span> bins ]</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>axes.set_xticklabels( labels )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>axes.set_title(<span class="vs">r"${\rm Masas}\,{\rm de}\,{\rm filtros}\,{\rm de}\,{\rm policarbonato}\,({\rm mg})$"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>axes.set_xlabel(<span class="vs">r"${\rm Masas}\,{({\rm mg})}$"</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>axes.set_ylabel(<span class="vs">r"${\rm Frecuencias}$"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>axes.plot( [mean,mean],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"red"</span>,    label<span class="op">=</span><span class="vs">r"$\bar</span><span class="sc">{m}</span><span class="vs">=\,$"</span>   <span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.3f}</span><span class="vs">\,\pm</span><span class="sc">{1:.3f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mean,uA)<span class="op">+</span><span class="vs">r"${\rm mg}$"</span> )</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>axes.plot( [moda,moda],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#28DDA2"</span>,label<span class="op">=</span><span class="vs">r"${\rm moda}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(moda)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>axes.plot( [mediana,mediana],[<span class="dv">0</span>,ymax],ls<span class="op">=</span><span class="st">'--'</span>,c<span class="op">=</span><span class="st">"#5E99CF"</span>,label<span class="op">=</span><span class="vs">r"${\rm mediana}=\,$"</span><span class="op">+</span><span class="vs">r"$</span><span class="sc">{0:.2f}</span><span class="vs">\,$"</span>.<span class="bu">format</span>(mediana)<span class="op">+</span><span class="vs">r"$\,{\rm mg}$"</span> )</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,ymax<span class="op">+</span><span class="fl">0.1</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># axes.set_xlim(3.4,4.4)</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>axes.legend(loc<span class="op">=</span><span class="dv">1</span>,frameon<span class="op">=</span><span class="va">True</span>,framealpha<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>axes.grid()</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.savefig("Histograma.pdf")</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="tarea1_files/figure-html/cell-8-output-1.png" width="465" height="465"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>, <span class="st">'text.usetex'</span>: <span class="va">True</span>})</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.linewidth'</span>:<span class="fl">1.5</span>})</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.labelsize'</span>:<span class="st">'large'</span>})</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'xtick.major.size'</span>:<span class="dv">6</span>})</span>
@@ -704,7 +696,7 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># colores = sns.cubehelix_palette(len(y)+4, reverse=True, start=-0.5, rot=0.3)</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>colores <span class="op">=</span> sns.cubehelix_palette(<span class="bu">len</span>(bins), reverse<span class="op">=</span><span class="va">True</span>, start<span class="op">=</span><span class="fl">.5</span>, rot<span class="op">=-</span><span class="fl">.75</span>)</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="fl">7.5</span>,<span class="fl">7.5</span>))</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>axes.plot( x,Dist,c<span class="op">=</span><span class="st">'black'</span>,label<span class="op">=</span><span class="vs">r"{\rm Gaussiana}"</span>,lw<span class="op">=</span><span class="dv">4</span>,alpha<span class="op">=</span><span class="fl">0.4</span>,zorder<span class="op">=</span><span class="dv">3</span> )</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
@@ -724,7 +716,7 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.15</span></span>
 <span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> vv, xx <span class="kw">in</span> <span class="bu">zip</span>(n,bins):</span>
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    Str <span class="op">=</span> <span class="vs">r'$\mathbf{'</span><span class="op">+</span><span class="vs">r'</span><span class="sc">{0:.2f}</span><span class="vs">'</span>.<span class="bu">format</span>(vv)<span class="op">+</span><span class="vs">r'}$'</span></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    axes.text(xx<span class="op">+</span>dx,vv<span class="op">-</span>dy,Str,color<span class="op">=</span><span class="st">"white"</span>,fontsize<span class="op">=</span><span class="dv">22</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    axes.text(xx<span class="op">+</span>dx,vv<span class="op">-</span>dy,Str,color<span class="op">=</span><span class="st">"white"</span>,fontsize<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ticks en el eje x</span></span>
@@ -753,7 +745,7 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,ymax)</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>axes.set_ylim(<span class="dv">0</span>,ymax<span class="op">+</span><span class="fl">0.03</span>)</span>
 <span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="co"># axes.set_xlim(3.4,4.4)</span></span>
 <span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>axes.legend(loc<span class="op">=</span><span class="dv">1</span>,frameon<span class="op">=</span><span class="va">True</span>,framealpha<span class="op">=</span><span class="fl">1.0</span>)</span>
@@ -769,7 +761,7 @@ Unlike other reduction functions (e.g. `skew`, `kurtosis`), the default behavior
 <span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.savefig("Histograma.pdf")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="tarea1_files/figure-html/cell-8-output-1.png" width="699" height="699"></p>
+<p><img src="tarea1_files/figure-html/cell-9-output-1.png" width="465" height="465"></p>
 </div>
 </div>
 
