@@ -1,6 +1,3 @@
 # Inicio
 
 En el sitio se encuentran una selección de notas del curso de Laboratorio de Física (clave: 1210) de la Facultad de Química, UNAM.
-
-
-
