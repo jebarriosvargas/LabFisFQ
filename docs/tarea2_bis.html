@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,6 +135,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -160,6 +163,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">LabFisFQ</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -302,81 +308,81 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div id="e8425b55" class="cell" data-execution_count="1">
+<div id="6162a5a0" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager <span class="im">as</span> fm, rcParams</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">18</span>, <span class="st">'text.usetex'</span>: <span class="va">True</span>})</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.linewidth'</span>:<span class="fl">1.5</span>})</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'axes.labelsize'</span>:<span class="st">'large'</span>})</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'xtick.major.size'</span>:<span class="dv">6</span>})</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'xtick.minor.size'</span>:<span class="dv">4</span>})</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'ytick.major.size'</span>:<span class="dv">6</span>})</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'ytick.minor.size'</span>:<span class="dv">4</span>})</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'xtick.major.width'</span>:<span class="fl">1.5</span>})</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'xtick.minor.width'</span>:<span class="fl">1.0</span>})</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'ytick.major.width'</span>:<span class="fl">1.5</span>})</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'ytick.minor.width'</span>:<span class="fl">1.0</span>})</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({<span class="st">'legend.frameon'</span>:<span class="va">False</span>,<span class="st">'legend.framealpha'</span>:<span class="fl">0.0</span>})</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>fpath <span class="op">=</span> os.path.join(<span class="st">"HELVETNL.TTF"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>prop  <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span>fpath,size<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> os.path.split(fpath)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> matplotlib <span class="im">import</span> colors</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> matplotlib <span class="im">import</span> font_manager <span class="im">as</span> fm, rcParams</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> os</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>mpl.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">18</span>, <span class="st">'text.usetex'</span>: <span class="va">True</span>})</span>
+<span id="cb1-10"><a href="#cb1-10"></a>mpl.rcParams.update({<span class="st">'axes.linewidth'</span>:<span class="fl">1.5</span>})</span>
+<span id="cb1-11"><a href="#cb1-11"></a>mpl.rcParams.update({<span class="st">'axes.labelsize'</span>:<span class="st">'large'</span>})</span>
+<span id="cb1-12"><a href="#cb1-12"></a>mpl.rcParams.update({<span class="st">'xtick.major.size'</span>:<span class="dv">6</span>})</span>
+<span id="cb1-13"><a href="#cb1-13"></a>mpl.rcParams.update({<span class="st">'xtick.minor.size'</span>:<span class="dv">4</span>})</span>
+<span id="cb1-14"><a href="#cb1-14"></a>mpl.rcParams.update({<span class="st">'ytick.major.size'</span>:<span class="dv">6</span>})</span>
+<span id="cb1-15"><a href="#cb1-15"></a>mpl.rcParams.update({<span class="st">'ytick.minor.size'</span>:<span class="dv">4</span>})</span>
+<span id="cb1-16"><a href="#cb1-16"></a>mpl.rcParams.update({<span class="st">'xtick.major.width'</span>:<span class="fl">1.5</span>})</span>
+<span id="cb1-17"><a href="#cb1-17"></a>mpl.rcParams.update({<span class="st">'xtick.minor.width'</span>:<span class="fl">1.0</span>})</span>
+<span id="cb1-18"><a href="#cb1-18"></a>mpl.rcParams.update({<span class="st">'ytick.major.width'</span>:<span class="fl">1.5</span>})</span>
+<span id="cb1-19"><a href="#cb1-19"></a>mpl.rcParams.update({<span class="st">'ytick.minor.width'</span>:<span class="fl">1.0</span>})</span>
+<span id="cb1-20"><a href="#cb1-20"></a>mpl.rcParams.update({<span class="st">'legend.frameon'</span>:<span class="va">False</span>,<span class="st">'legend.framealpha'</span>:<span class="fl">0.0</span>})</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>fpath <span class="op">=</span> os.path.join(<span class="st">"HELVETNL.TTF"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23"></a>prop  <span class="op">=</span> fm.FontProperties(fname<span class="op">=</span>fpath,size<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb1-24"><a href="#cb1-24"></a>fname <span class="op">=</span> os.path.split(fpath)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="e53d9eba" class="cell" data-execution_count="2">
+<div id="e639fa3f" class="cell" data-execution_count="2">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Datos <span class="op">=</span> array([[<span class="fl">1.0</span>, <span class="fl">0.46</span>, <span class="fl">0.47</span>, <span class="fl">0.48</span>, <span class="fl">0.46</span>, <span class="fl">0.46</span>],</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.8</span>, <span class="fl">0.43</span>, <span class="fl">0.42</span>, <span class="fl">0.42</span>, <span class="fl">0.41</span>, <span class="fl">0.41</span>],</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.6</span>, <span class="fl">0.37</span>, <span class="fl">0.37</span>, <span class="fl">0.38</span>, <span class="fl">0.36</span>, <span class="fl">0.37</span>],</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.5</span>, <span class="fl">0.33</span>, <span class="fl">0.34</span>, <span class="fl">0.32</span>, <span class="fl">0.30</span>, <span class="fl">0.33</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.4</span>, <span class="fl">0.27</span>, <span class="fl">0.28</span>, <span class="fl">0.28</span>, <span class="fl">0.29</span>, <span class="fl">0.29</span>]])</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>h     <span class="op">=</span> Datos.T[<span class="dv">0</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> Datos.T[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>Datos <span class="op">=</span> array([[<span class="fl">1.0</span>, <span class="fl">0.46</span>, <span class="fl">0.47</span>, <span class="fl">0.48</span>, <span class="fl">0.46</span>, <span class="fl">0.46</span>],</span>
+<span id="cb2-2"><a href="#cb2-2"></a>[<span class="fl">0.8</span>, <span class="fl">0.43</span>, <span class="fl">0.42</span>, <span class="fl">0.42</span>, <span class="fl">0.41</span>, <span class="fl">0.41</span>],</span>
+<span id="cb2-3"><a href="#cb2-3"></a>[<span class="fl">0.6</span>, <span class="fl">0.37</span>, <span class="fl">0.37</span>, <span class="fl">0.38</span>, <span class="fl">0.36</span>, <span class="fl">0.37</span>],</span>
+<span id="cb2-4"><a href="#cb2-4"></a>[<span class="fl">0.5</span>, <span class="fl">0.33</span>, <span class="fl">0.34</span>, <span class="fl">0.32</span>, <span class="fl">0.30</span>, <span class="fl">0.33</span>],</span>
+<span id="cb2-5"><a href="#cb2-5"></a>[<span class="fl">0.4</span>, <span class="fl">0.27</span>, <span class="fl">0.28</span>, <span class="fl">0.28</span>, <span class="fl">0.29</span>, <span class="fl">0.29</span>]])</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>h     <span class="op">=</span> Datos.T[<span class="dv">0</span>]</span>
+<span id="cb2-8"><a href="#cb2-8"></a>times <span class="op">=</span> Datos.T[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><span class="math display">\[
 \displaystyle u_{\rm C}(t) = \sqrt{ \bigg[ \sqrt{ \frac{\sum_i (t_i-\bar{t})^2}{n-1} }\bigg( \frac{1}{\sqrt{n}} \bigg) \bigg]^2 + u_{\rm B}^2(t) }
 \]</span></p>
-<div id="3445625a" class="cell" data-execution_count="3">
+<div id="ebcfd082" class="cell" data-execution_count="3">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n    <span class="op">=</span> <span class="bu">len</span>(times)   <span class="co"># verificar</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>uB_t <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>t    <span class="op">=</span> np.mean(times,axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>u_t  <span class="op">=</span> np.sqrt( ( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) )<span class="op">*</span>( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) ) <span class="op">+</span> uB_t<span class="op">*</span>uB_t )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>n    <span class="op">=</span> <span class="bu">len</span>(times)   <span class="co"># verificar</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>uB_t <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>t    <span class="op">=</span> np.mean(times,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>u_t  <span class="op">=</span> np.sqrt( ( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) )<span class="op">*</span>( np.std(times,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span><span class="dv">1</span>)) ) <span class="op">+</span> uB_t<span class="op">*</span>uB_t )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
 <li>Determine el tiempo promedio y su incertidumbre con su incertidumbre para cada altura.</li>
 </ul>
-<div id="55418d2b" class="cell" data-execution_count="4">
+<div id="2fc246b6" class="cell" data-execution_count="4">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'tprom [s] ='</span>,t)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(t) [s] ='</span>,u_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">print</span>(<span class="st">'tprom [s] ='</span>,t)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(<span class="st">'u(t) [s] ='</span>,u_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>tprom [s] = [0.466 0.418 0.37  0.324 0.282]
 u(t) [s] = [0.01019804 0.01017349 0.01012423 0.01055936 0.01017349]</code></pre>
 </div>
 </div>
-<div id="be6bc101" class="cell" data-execution_count="5">
+<div id="2b5af503" class="cell" data-execution_count="5">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>uB_h <span class="op">=</span> <span class="fl">0.01</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>u_h  <span class="op">=</span> uB_h<span class="op">*</span>np.ones_like(h)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'h [m] ='</span>,h)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'u(h) [m] ='</span>,u_h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>uB_h <span class="op">=</span> <span class="fl">0.01</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>u_h  <span class="op">=</span> uB_h<span class="op">*</span>np.ones_like(h)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">print</span>(<span class="st">'h [m] ='</span>,h)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="bu">print</span>(<span class="st">'u(h) [m] ='</span>,u_h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>h [m] = [1.  0.8 0.6 0.5 0.4]
@@ -386,54 +392,54 @@ u(h) [m] = [0.01 0.01 0.01 0.01 0.01]</code></pre>
 <ul>
 <li>Realice la regresión lineal por el método de cuadrados mínimos y obtenga el valor de la pendiente y su incertidumbre</li>
 </ul>
-<div id="ce9dbdba" class="cell" data-execution_count="6">
+<div id="de173acb" class="cell" data-execution_count="6">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x    <span class="op">=</span> h</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>xerr <span class="op">=</span> u_h</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y    <span class="op">=</span> t<span class="op">*</span>t</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>yerr <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>t<span class="op">*</span>u_t</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Sxy <span class="op">=</span> np.<span class="bu">sum</span>(x<span class="op">*</span>y)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Sx  <span class="op">=</span> np.<span class="bu">sum</span>(x)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Sy  <span class="op">=</span> np.<span class="bu">sum</span>(y)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>Sxx <span class="op">=</span> np.<span class="bu">sum</span>(x<span class="op">*</span>x)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Fac <span class="op">=</span> n<span class="op">*</span>Sxx<span class="op">-</span>Sx<span class="op">*</span>Sx</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>m   <span class="op">=</span> (n<span class="op">*</span>Sxy<span class="op">-</span>Sx<span class="op">*</span>Sy)<span class="op">/</span>Fac</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>b   <span class="op">=</span> (Sxx<span class="op">*</span>Sy<span class="op">-</span>Sx<span class="op">*</span>Sxy)<span class="op">/</span>Fac</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'m = </span><span class="sc">{0:.2E}</span><span class="st"> s²/m'</span>.<span class="bu">format</span>(m))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'b = </span><span class="sc">{0:.2E}</span><span class="st"> s²'</span>.<span class="bu">format</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Datos</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>x    <span class="op">=</span> h</span>
+<span id="cb8-3"><a href="#cb8-3"></a>xerr <span class="op">=</span> u_h</span>
+<span id="cb8-4"><a href="#cb8-4"></a>y    <span class="op">=</span> t<span class="op">*</span>t</span>
+<span id="cb8-5"><a href="#cb8-5"></a>yerr <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>t<span class="op">*</span>u_t</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a>Sxy <span class="op">=</span> np.<span class="bu">sum</span>(x<span class="op">*</span>y)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>Sx  <span class="op">=</span> np.<span class="bu">sum</span>(x)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>Sy  <span class="op">=</span> np.<span class="bu">sum</span>(y)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>Sxx <span class="op">=</span> np.<span class="bu">sum</span>(x<span class="op">*</span>x)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>Fac <span class="op">=</span> n<span class="op">*</span>Sxx<span class="op">-</span>Sx<span class="op">*</span>Sx</span>
+<span id="cb8-12"><a href="#cb8-12"></a>m   <span class="op">=</span> (n<span class="op">*</span>Sxy<span class="op">-</span>Sx<span class="op">*</span>Sy)<span class="op">/</span>Fac</span>
+<span id="cb8-13"><a href="#cb8-13"></a>b   <span class="op">=</span> (Sxx<span class="op">*</span>Sy<span class="op">-</span>Sx<span class="op">*</span>Sxy)<span class="op">/</span>Fac</span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="bu">print</span> (<span class="st">'m = </span><span class="sc">{0:.2E}</span><span class="st"> s²/m'</span>.<span class="bu">format</span>(m))</span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="bu">print</span> (<span class="st">'b = </span><span class="sc">{0:.2E}</span><span class="st"> s²'</span>.<span class="bu">format</span>(b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>m = 2.27E-01 s²/m
 b = -7.00E-03 s²</code></pre>
 </div>
 </div>
-<div id="c8128a03" class="cell" data-execution_count="7">
+<div id="f6450b32" class="cell" data-execution_count="7">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Sy_mx_b <span class="op">=</span> np.<span class="bu">sum</span>( (y<span class="op">-</span>m<span class="op">*</span>x <span class="op">-</span> b)<span class="op">*</span>(y<span class="op">-</span>m<span class="op">*</span>x <span class="op">-</span> b) )</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>u_m     <span class="op">=</span> np.sqrt(  n<span class="op">*</span>Sy_mx_b<span class="op">/</span>(n<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>Fac  )</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>u_b     <span class="op">=</span> np.sqrt( Sxx<span class="op">*</span>Sy_mx_b<span class="op">/</span>(n<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>Fac )</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'u(m) = </span><span class="sc">{0:.2e}</span><span class="st"> s^2/m'</span>.<span class="bu">format</span>(u_m))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'u(b) = </span><span class="sc">{0:.2e}</span><span class="st"> s^2'</span>.<span class="bu">format</span>(u_b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>Sy_mx_b <span class="op">=</span> np.<span class="bu">sum</span>( (y<span class="op">-</span>m<span class="op">*</span>x <span class="op">-</span> b)<span class="op">*</span>(y<span class="op">-</span>m<span class="op">*</span>x <span class="op">-</span> b) )</span>
+<span id="cb10-2"><a href="#cb10-2"></a>u_m     <span class="op">=</span> np.sqrt(  n<span class="op">*</span>Sy_mx_b<span class="op">/</span>(n<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>Fac  )</span>
+<span id="cb10-3"><a href="#cb10-3"></a>u_b     <span class="op">=</span> np.sqrt( Sxx<span class="op">*</span>Sy_mx_b<span class="op">/</span>(n<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>Fac )</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="bu">print</span> (<span class="st">'u(m) = </span><span class="sc">{0:.2e}</span><span class="st"> s^2/m'</span>.<span class="bu">format</span>(u_m))</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span> (<span class="st">'u(b) = </span><span class="sc">{0:.2e}</span><span class="st"> s^2'</span>.<span class="bu">format</span>(u_b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>u(m) = 1.12e-02 s^2/m
 u(b) = 7.80e-03 s^2</code></pre>
 </div>
 </div>
-<div id="7a46c2f4" class="cell" data-execution_count="8">
+<div id="cd340695" class="cell" data-execution_count="8">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g   <span class="op">=</span> <span class="dv">2</span><span class="op">/</span>m</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>u_g <span class="op">=</span> <span class="fl">2.0</span><span class="op">/</span>m<span class="op">/</span>m<span class="op">*</span>u_m </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'g    = </span><span class="sc">{0:.8f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(g))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'u(g) = </span><span class="sc">{0:.8f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(u_g))</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">''</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'g    = </span><span class="sc">{0:.1f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(g))</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">'u(g) = </span><span class="sc">{0:.1f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(u_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>g   <span class="op">=</span> <span class="dv">2</span><span class="op">/</span>m</span>
+<span id="cb12-2"><a href="#cb12-2"></a>u_g <span class="op">=</span> <span class="fl">2.0</span><span class="op">/</span>m<span class="op">/</span>m<span class="op">*</span>u_m </span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="bu">print</span> (<span class="st">'g    = </span><span class="sc">{0:.8f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(g))</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="bu">print</span> (<span class="st">'u(g) = </span><span class="sc">{0:.8f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(u_g))</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="bu">print</span> (<span class="st">''</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="bu">print</span> (<span class="st">'g    = </span><span class="sc">{0:.1f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(g))</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="bu">print</span> (<span class="st">'u(g) = </span><span class="sc">{0:.1f}</span><span class="st"> m/s^2'</span>.<span class="bu">format</span>(u_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>g    = 8.81995134 m/s^2
@@ -443,56 +449,56 @@ g    = 8.8 m/s^2
 u(g) = 0.4 m/s^2</code></pre>
 </div>
 </div>
-<div id="626f201d" class="cell" data-execution_count="9">
+<div id="97cfab1b" class="cell" data-execution_count="9">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig,axes <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>,nrows<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">13</span>,<span class="dv">6</span>))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>xline <span class="op">=</span> np.linspace(x.<span class="bu">min</span>()<span class="op">-</span><span class="fl">0.1</span>,x.<span class="bu">max</span>()<span class="op">+</span><span class="fl">0.1</span>,<span class="dv">400</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>yline <span class="op">=</span> m<span class="op">*</span>xline <span class="op">+</span> b</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="vs">r'Ca\'ida libre: Tiempo al cuadrado vs altura'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].errorbar(x,y,xerr<span class="op">=</span>xerr,yerr<span class="op">=</span>yerr ,fmt<span class="op">=</span><span class="st">'o'</span>,mfc<span class="op">=</span><span class="st">'none'</span>,ms<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                  elinewidth<span class="op">=</span><span class="dv">1</span>,capthick<span class="op">=</span><span class="dv">1</span>,ecolor<span class="op">=</span><span class="st">'b'</span>,zorder<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                  markeredgecolor<span class="op">=</span><span class="st">'b'</span>,dash_capstyle<span class="op">=</span><span class="st">'round'</span>,capsize<span class="op">=</span><span class="dv">2</span>,label<span class="op">=</span><span class="vs">r'Datos'</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>linelabel <span class="op">=</span> <span class="vs">r'$g = (</span><span class="sc">{0:.1f}</span><span class="vs">\pm</span><span class="sc">{1:.1f}</span><span class="vs">)$'</span>.<span class="bu">format</span>(g,u_g)<span class="op">+</span><span class="vs">r'$\;{\rm m/s}^2$'</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(xline,yline,c<span class="op">=</span><span class="st">'red'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span>linelabel,zorder<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_yticks([<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.15</span>,<span class="fl">0.2</span>,<span class="fl">0.25</span>])</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Altura ('</span><span class="op">+</span><span class="vs">r'${\rm m}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="vs">r'$t^2$ ('</span><span class="op">+</span><span class="vs">r'${\rm s}^2$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">#############################</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="vs">r'Ca\'ida libre: Tiempo vs altura'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].errorbar(x,sqrt(y),xerr<span class="op">=</span>xerr,yerr<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>yerr<span class="op">/</span>sqrt(y) ,fmt<span class="op">=</span><span class="st">'o'</span>,mfc<span class="op">=</span><span class="st">'none'</span>,ms<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                  elinewidth<span class="op">=</span><span class="dv">1</span>,capthick<span class="op">=</span><span class="dv">1</span>,ecolor<span class="op">=</span><span class="st">'b'</span>,zorder<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                  markeredgecolor<span class="op">=</span><span class="st">'b'</span>,dash_capstyle<span class="op">=</span><span class="st">'round'</span>,capsize<span class="op">=</span><span class="dv">2</span>,label<span class="op">=</span><span class="vs">r'Datos'</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>linelabel <span class="op">=</span> <span class="vs">r'$g = (</span><span class="sc">{0:.1f}</span><span class="vs">\pm</span><span class="sc">{1:.1f}</span><span class="vs">)$'</span>.<span class="bu">format</span>(g,u_g)<span class="op">+</span><span class="vs">r'$\;{\rm m/s}^2$'</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(xline,sqrt(yline),c<span class="op">=</span><span class="st">'red'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span>linelabel,zorder<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># axes[1].set_yticks([0.05,0.1,0.15,0.2,0.25])</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Altura ('</span><span class="op">+</span><span class="vs">r'${\rm m}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="vs">r'Tiempo ('</span><span class="op">+</span><span class="vs">r'${\rm s}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'AjusteLineal.pdf'</span>,dpi<span class="op">=</span><span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>fig,axes <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>,nrows<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">13</span>,<span class="dv">6</span>))</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>xline <span class="op">=</span> np.linspace(x.<span class="bu">min</span>()<span class="op">-</span><span class="fl">0.1</span>,x.<span class="bu">max</span>()<span class="op">+</span><span class="fl">0.1</span>,<span class="dv">400</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>yline <span class="op">=</span> m<span class="op">*</span>xline <span class="op">+</span> b</span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a>axes[<span class="dv">0</span>].set_title(<span class="vs">r'Ca\'ida libre: Tiempo al cuadrado vs altura'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-7"><a href="#cb14-7"></a></span>
+<span id="cb14-8"><a href="#cb14-8"></a>axes[<span class="dv">0</span>].errorbar(x,y,xerr<span class="op">=</span>xerr,yerr<span class="op">=</span>yerr ,fmt<span class="op">=</span><span class="st">'o'</span>,mfc<span class="op">=</span><span class="st">'none'</span>,ms<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb14-9"><a href="#cb14-9"></a>                  elinewidth<span class="op">=</span><span class="dv">1</span>,capthick<span class="op">=</span><span class="dv">1</span>,ecolor<span class="op">=</span><span class="st">'b'</span>,zorder<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>                  markeredgecolor<span class="op">=</span><span class="st">'b'</span>,dash_capstyle<span class="op">=</span><span class="st">'round'</span>,capsize<span class="op">=</span><span class="dv">2</span>,label<span class="op">=</span><span class="vs">r'Datos'</span>)</span>
+<span id="cb14-11"><a href="#cb14-11"></a></span>
+<span id="cb14-12"><a href="#cb14-12"></a>linelabel <span class="op">=</span> <span class="vs">r'$g = (</span><span class="sc">{0:.1f}</span><span class="vs">\pm</span><span class="sc">{1:.1f}</span><span class="vs">)$'</span>.<span class="bu">format</span>(g,u_g)<span class="op">+</span><span class="vs">r'$\;{\rm m/s}^2$'</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a></span>
+<span id="cb14-14"><a href="#cb14-14"></a>axes[<span class="dv">0</span>].plot(xline,yline,c<span class="op">=</span><span class="st">'red'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span>linelabel,zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-15"><a href="#cb14-15"></a></span>
+<span id="cb14-16"><a href="#cb14-16"></a>axes[<span class="dv">0</span>].set_yticks([<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.15</span>,<span class="fl">0.2</span>,<span class="fl">0.25</span>])</span>
+<span id="cb14-17"><a href="#cb14-17"></a></span>
+<span id="cb14-18"><a href="#cb14-18"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Altura ('</span><span class="op">+</span><span class="vs">r'${\rm m}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-19"><a href="#cb14-19"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="vs">r'$t^2$ ('</span><span class="op">+</span><span class="vs">r'${\rm s}^2$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-20"><a href="#cb14-20"></a></span>
+<span id="cb14-21"><a href="#cb14-21"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb14-22"><a href="#cb14-22"></a></span>
+<span id="cb14-23"><a href="#cb14-23"></a><span class="co">#############################</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a></span>
+<span id="cb14-25"><a href="#cb14-25"></a></span>
+<span id="cb14-26"><a href="#cb14-26"></a>axes[<span class="dv">1</span>].set_title(<span class="vs">r'Ca\'ida libre: Tiempo vs altura'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-27"><a href="#cb14-27"></a></span>
+<span id="cb14-28"><a href="#cb14-28"></a>axes[<span class="dv">1</span>].errorbar(x,sqrt(y),xerr<span class="op">=</span>xerr,yerr<span class="op">=</span><span class="fl">0.5</span><span class="op">*</span>yerr<span class="op">/</span>sqrt(y) ,fmt<span class="op">=</span><span class="st">'o'</span>,mfc<span class="op">=</span><span class="st">'none'</span>,ms<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb14-29"><a href="#cb14-29"></a>                  elinewidth<span class="op">=</span><span class="dv">1</span>,capthick<span class="op">=</span><span class="dv">1</span>,ecolor<span class="op">=</span><span class="st">'b'</span>,zorder<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb14-30"><a href="#cb14-30"></a>                  markeredgecolor<span class="op">=</span><span class="st">'b'</span>,dash_capstyle<span class="op">=</span><span class="st">'round'</span>,capsize<span class="op">=</span><span class="dv">2</span>,label<span class="op">=</span><span class="vs">r'Datos'</span>)</span>
+<span id="cb14-31"><a href="#cb14-31"></a></span>
+<span id="cb14-32"><a href="#cb14-32"></a>linelabel <span class="op">=</span> <span class="vs">r'$g = (</span><span class="sc">{0:.1f}</span><span class="vs">\pm</span><span class="sc">{1:.1f}</span><span class="vs">)$'</span>.<span class="bu">format</span>(g,u_g)<span class="op">+</span><span class="vs">r'$\;{\rm m/s}^2$'</span></span>
+<span id="cb14-33"><a href="#cb14-33"></a></span>
+<span id="cb14-34"><a href="#cb14-34"></a>axes[<span class="dv">1</span>].plot(xline,sqrt(yline),c<span class="op">=</span><span class="st">'red'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span>linelabel,zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-35"><a href="#cb14-35"></a></span>
+<span id="cb14-36"><a href="#cb14-36"></a><span class="co"># axes[1].set_yticks([0.05,0.1,0.15,0.2,0.25])</span></span>
+<span id="cb14-37"><a href="#cb14-37"></a></span>
+<span id="cb14-38"><a href="#cb14-38"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Altura ('</span><span class="op">+</span><span class="vs">r'${\rm m}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-39"><a href="#cb14-39"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="vs">r'Tiempo ('</span><span class="op">+</span><span class="vs">r'${\rm s}$'</span><span class="op">+</span><span class="st">')'</span>,fontproperties<span class="op">=</span>prop)</span>
+<span id="cb14-40"><a href="#cb14-40"></a></span>
+<span id="cb14-41"><a href="#cb14-41"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb14-42"><a href="#cb14-42"></a></span>
+<span id="cb14-43"><a href="#cb14-43"></a></span>
+<span id="cb14-44"><a href="#cb14-44"></a></span>
+<span id="cb14-45"><a href="#cb14-45"></a>fig.tight_layout()</span>
+<span id="cb14-46"><a href="#cb14-46"></a></span>
+<span id="cb14-47"><a href="#cb14-47"></a>fig.savefig(<span class="st">'AjusteLineal.pdf'</span>,dpi<span class="op">=</span><span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -526,6 +532,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

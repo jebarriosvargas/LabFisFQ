@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,6 +135,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -160,6 +163,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">LabFisFQ</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -224,7 +230,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Contenido</h2>
    
   <ul>
   <li><a href="#gráfica-de-ajuste-lineal" id="toc-gráfica-de-ajuste-lineal" class="nav-link active" data-scroll-target="#gráfica-de-ajuste-lineal"><span class="header-section-number">3.1</span> Gráfica de; ajuste lineal</a></li>
@@ -349,17 +355,17 @@ window.Quarto = {
 </table>
 <div id="80b5ee75" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Datos <span class="op">=</span> array(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">20</span>, <span class="fl">0.20104</span>],</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">25</span>, <span class="fl">0.24930</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">30</span>, <span class="fl">0.31100</span>],</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">35</span>, <span class="fl">0.34878</span>],</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">40</span>, <span class="fl">0.40206</span>],</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">45</span>, <span class="fl">0.44086</span>],</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">50</span>, <span class="fl">0.49794</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> pylab <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>Datos <span class="op">=</span> array(</span>
+<span id="cb1-4"><a href="#cb1-4"></a>[[<span class="dv">20</span>, <span class="fl">0.20104</span>],</span>
+<span id="cb1-5"><a href="#cb1-5"></a>[<span class="dv">25</span>, <span class="fl">0.24930</span>],</span>
+<span id="cb1-6"><a href="#cb1-6"></a>[<span class="dv">30</span>, <span class="fl">0.31100</span>],</span>
+<span id="cb1-7"><a href="#cb1-7"></a>[<span class="dv">35</span>, <span class="fl">0.34878</span>],</span>
+<span id="cb1-8"><a href="#cb1-8"></a>[<span class="dv">40</span>, <span class="fl">0.40206</span>],</span>
+<span id="cb1-9"><a href="#cb1-9"></a>[<span class="dv">45</span>, <span class="fl">0.44086</span>],</span>
+<span id="cb1-10"><a href="#cb1-10"></a>[<span class="dv">50</span>, <span class="fl">0.49794</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><span class="math display">\[\begin{align}
@@ -368,18 +374,18 @@ m &amp;= 0.009749142857
 \end{align}\]</span></p>
 <div id="d6ef8dfd" class="cell" data-execution_count="2">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> Datos[:,<span class="dv">0</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> Datos[:,<span class="dv">1</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(X)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SX  <span class="op">=</span> <span class="bu">sum</span>(X)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>SY  <span class="op">=</span> <span class="bu">sum</span>(Y)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>SXY <span class="op">=</span> <span class="bu">sum</span>( X<span class="op">*</span>Y )</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>SXX <span class="op">=</span> <span class="bu">sum</span>(X<span class="op">*</span>X)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> (n<span class="op">*</span>SXY<span class="op">-</span>SX<span class="op">*</span>SY)<span class="op">/</span>( n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX )</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"m="</span>,m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>X <span class="op">=</span> Datos[:,<span class="dv">0</span>]</span>
+<span id="cb2-2"><a href="#cb2-2"></a>Y <span class="op">=</span> Datos[:,<span class="dv">1</span>]</span>
+<span id="cb2-3"><a href="#cb2-3"></a>n <span class="op">=</span> <span class="bu">len</span>(X)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>SX  <span class="op">=</span> <span class="bu">sum</span>(X)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>SY  <span class="op">=</span> <span class="bu">sum</span>(Y)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>SXY <span class="op">=</span> <span class="bu">sum</span>( X<span class="op">*</span>Y )</span>
+<span id="cb2-8"><a href="#cb2-8"></a>SXX <span class="op">=</span> <span class="bu">sum</span>(X<span class="op">*</span>X)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>m <span class="op">=</span> (n<span class="op">*</span>SXY<span class="op">-</span>SX<span class="op">*</span>SY)<span class="op">/</span>( n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX )</span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="bu">print</span>(<span class="st">"m="</span>,m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>m= 0.009749142857142859</code></pre>
@@ -391,9 +397,9 @@ b &amp;= 0.00892
 \end{align}\]</span></p>
 <div id="fa2525d3" class="cell" data-execution_count="3">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (SXX<span class="op">*</span>SY <span class="op">-</span> SX<span class="op">*</span>SXY)<span class="op">/</span>( n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX )</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"b="</span>,b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>b <span class="op">=</span> (SXX<span class="op">*</span>SY <span class="op">-</span> SX<span class="op">*</span>SXY)<span class="op">/</span>( n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX )</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(<span class="st">"b="</span>,b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>b= 0.008919999999999739</code></pre>
@@ -405,10 +411,10 @@ u(m) &amp;= 0.00022161684162038723\\
 \end{align}\]</span></p>
 <div id="382105f2" class="cell" data-execution_count="4">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Sy_mx_b2 <span class="op">=</span> <span class="bu">sum</span>( (Y<span class="op">-</span>m<span class="op">*</span>X<span class="op">-</span>b)<span class="op">*</span>(Y<span class="op">-</span>m<span class="op">*</span>X<span class="op">-</span>b) )</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>um <span class="op">=</span> sqrt( n<span class="op">*</span>Sy_mx_b2<span class="op">/</span>( (n<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span>(n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX) ) )</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"u(m)"</span>,um)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>Sy_mx_b2 <span class="op">=</span> <span class="bu">sum</span>( (Y<span class="op">-</span>m<span class="op">*</span>X<span class="op">-</span>b)<span class="op">*</span>(Y<span class="op">-</span>m<span class="op">*</span>X<span class="op">-</span>b) )</span>
+<span id="cb6-2"><a href="#cb6-2"></a>um <span class="op">=</span> sqrt( n<span class="op">*</span>Sy_mx_b2<span class="op">/</span>( (n<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span>(n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX) ) )</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">print</span>(<span class="st">"u(m)"</span>,um)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>u(m) 0.00022161684162038723</code></pre>
@@ -420,9 +426,9 @@ u(b) &amp;= 0.008066974801558477
 \end{align}\]</span></p>
 <div id="fa003152" class="cell" data-execution_count="5">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ub <span class="op">=</span> sqrt( SXX<span class="op">*</span>Sy_mx_b2<span class="op">/</span>((n<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span>(n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX)) ) </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"u(b)="</span>,ub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>ub <span class="op">=</span> sqrt( SXX<span class="op">*</span>Sy_mx_b2<span class="op">/</span>((n<span class="op">-</span><span class="dv">2</span>)<span class="op">*</span>(n<span class="op">*</span>SXX<span class="op">-</span>SX<span class="op">*</span>SX)) ) </span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">print</span>(<span class="st">"u(b)="</span>,ub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>u(b)= 0.008066974801558477</code></pre>
@@ -432,13 +438,13 @@ u(b) &amp;= 0.008066974801558477
 <h2 data-number="3.1" class="anchored" data-anchor-id="gráfica-de-ajuste-lineal"><span class="header-section-number">3.1</span> Gráfica de; ajuste lineal</h2>
 <div id="4b4e630b" class="cell" data-execution_count="6">
 <details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scatter( X,Y  )</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> linspace(X.<span class="bu">min</span>(),X.<span class="bu">max</span>())</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> m<span class="op">*</span>x<span class="op">+</span>b</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plot( x,y )</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>xlabel(<span class="st">'X'</span>)<span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ylabel(<span class="st">'Y'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Mostrar código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>scatter( X,Y  )</span>
+<span id="cb10-2"><a href="#cb10-2"></a>x <span class="op">=</span> linspace(X.<span class="bu">min</span>(),X.<span class="bu">max</span>())</span>
+<span id="cb10-3"><a href="#cb10-3"></a>y <span class="op">=</span> m<span class="op">*</span>x<span class="op">+</span>b</span>
+<span id="cb10-4"><a href="#cb10-4"></a>plot( x,y )</span>
+<span id="cb10-5"><a href="#cb10-5"></a>xlabel(<span class="st">'X'</span>)<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>ylabel(<span class="st">'Y'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -473,6 +479,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

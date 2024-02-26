@@ -103,10 +103,6 @@ print('ρ    = {0:.4f} [g/mm³]'.format(ρ))
 print('u(ρ) = {0:.4f} [g/mm³]'.format(uρ_C))
 ```
 
-
-
-
-
 ## Ejercicio
 
 | | | | | | | | | | |
